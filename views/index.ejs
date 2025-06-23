@@ -1,4 +1,18 @@
 <%- include("partials/header.ejs") %>
-<main></main>
+<main>
+  <div>
+    <!-- TODO: SETUP TO VIEW ENTRIES IN TABLES -->
+    <% for (let entry of Entries) { %>
+    <p><%= entry.title %></p>
+    <p><%= entry.author %></p>
+    <p><%= entry.book_cover %></p>
+    <p><%= entry.isbn %></p>
+    <p><%= entry.ol_link %></p>
+    <p><%= entry.rating %></p>
+    <p><%= entry.review %></p>
+    <p><%= entry.date_created %></p>
+    <% } %>
+  </div>
+</main>
 
 <%- include("partials/footer.ejs") %>

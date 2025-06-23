@@ -39,10 +39,37 @@ let reviews = [
   },
 ];
 
+let entries = [];
+
+async function obtainBookReviews() {
+  try {
+    const result = await db.query(
+      "SELECT * FROM books JOIN reviews ON books.isbn = reviews.book_isbn"
+    );
+    // console.log(result);
+    // console.log("Number of rows: ", result.rows.length);
+
+    if (result.rows.length > 0) {
+      // console.log("You've got some results.", result.rows);
+      entries = []; // To ensure there are no double-ups
+      result.rows.forEach((entry) => {
+        entries.push(entry);
+      });
+    } else {
+      console.log("No reviews found for this book.");
+    }
+  } catch (error) {
+    console.error("Error details: ", error.message);
+  }
+}
+
 app.get("/", async (req, res) => {
   console.log("You're on the homepage.");
-  res.render("index.ejs");
-  // console.log(await db.query("SELECT * FROM test"));
+
+  await obtainBookReviews();
+  console.log(entries);
+
+  res.render("index.ejs", { Entries: entries });
 });
 
 app.listen(port, () => {
