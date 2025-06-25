@@ -1,16 +1,34 @@
 <%- include("partials/header.ejs") %>
+
 <main>
-  <div>
+  <div class="entries-flex">
     <!-- TODO: SETUP TO VIEW ENTRIES IN TABLES -->
     <% for (let entry of Entries) { %>
-    <p><%= entry.title %></p>
-    <p><%= entry.author %></p>
-    <p><%= entry.book_cover %></p>
-    <p><%= entry.isbn %></p>
-    <p><%= entry.ol_link %></p>
-    <p><%= entry.rating %></p>
-    <p><%= entry.review %></p>
-    <p><%= entry.date_created %></p>
+    <div class="entry-grid">
+      <img
+        src="<%= entry.book_cover %>"
+        alt="book cover for <%= entry.Title %>"
+      />
+      <div class="entry-text-container">
+        <div class="entry-title">
+          <h3><a href="<%= entry.ol_link %>"><%= entry.title %></a></h3>
+          <p>by <%= entry.author %></p>
+        </div>
+        <p>Rating: <%= entry.rating %> / 5</p>
+        <p>Review: <%= entry.review %></p>
+        <div class="entry-tidbits">
+          <p>
+            Date Created: <% const formattedDate = new
+            Date(entry.date_created).toLocaleDateString(); %> <%= formattedDate
+            %>
+          </p>
+          <div class="entry-tidbits-buttons">
+            <button>Edit</button>
+            <button>Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <% } %>
   </div>
 </main>
