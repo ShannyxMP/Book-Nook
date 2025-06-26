@@ -11,11 +11,13 @@
     "url": "git+https://github.com/ShannyxMP/Book-Nook.git"
   },
   "keywords": [
-    "node.js",
-    "express",
-    "body-parser",
-    "ejs",
     "axios",
+    "body-parser",
+    "dotenv",
+    "ejs",
+    "express",
+    "node.js",
+    "pg",
     "API",
     "book",
     "web",
@@ -32,6 +34,7 @@
   "dependencies": {
     "axios": "^1.10.0",
     "body-parser": "^2.2.0",
+    "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "node": "^24.2.0",
