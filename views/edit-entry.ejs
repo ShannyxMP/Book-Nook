@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs") %>
+
+<div class="entry-grid">
+  <img
+    src="<%= entryToEdit.book_cover %>"
+    alt="book cover for <%= entryToEdit.title %>"
+  />
+  <div class="entry-text-container">
+    <div class="entry-title">
+      <h3><a href="<%= entryToEdit.ol_link %>"><%= entryToEdit.title %></a></h3>
+      <p>by <%= entryToEdit.author %></p>
+    </div>
+    <div class="entry-tidbits">
+      <p>
+        Date Created: <% const formattedDate = new
+        Date(entryToEdit.date_created).toLocaleDateString(); %> <%=
+        formattedDate %>
+      </p>
+    </div>
+    <form action="/edit-entry/<%= entryToEdit.review_id %>" method="POST">
+      <p>Rating:</p>
+      <% for (let i = 0; i < 6; i++) { %> <input id="<%= i %>" type="radio"
+      name="rating" value="<%= i %>" required <%= entryToEdit.rating == i ?
+      "checked" : "" %> />
+      <!-- entryToEdit.rating == i ? "checked" : ""  <--  So that the user can see which rating was originally selected  -->
+      <label for="<%= i %>"><%= i %></label>
+      <% } %>
+      <p>Review:</p>
+      <textarea name="review" placeholder="Write your review here..." required>
+      <%= entryToEdit.review %>
+    </textarea
+      >
+      <div>
+        <a href="/">Cancel</a>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

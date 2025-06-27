@@ -46,7 +46,7 @@ let entries = [];
 async function obtainBookReviews() {
   try {
     const result = await db.query(
-      "SELECT * FROM books JOIN reviews ON books.isbn = reviews.book_isbn"
+      "SELECT reviews.id AS review_id, books.title, books.author, books.book_cover, books.ol_link, reviews.rating, reviews.review, reviews.date_created FROM books JOIN reviews ON books.isbn = reviews.book_isbn ORDER BY reviews.date_created ASC"
     );
     // console.log(result);
     // console.log("Number of rows: ", result.rows.length);
@@ -72,6 +72,35 @@ app.get("/", async (req, res) => {
   console.log(entries);
 
   res.render("index.ejs", { Entries: entries });
+});
+
+app.get("/edit/:postId", async (req, res) => {
+  const entryIndex = req.params.postId;
+
+  await obtainBookReviews();
+
+  const fetchEntry = entries.find((entry) => entry.review_id == entryIndex);
+  // console.log("Fetched entry: ", fetchEntry);
+
+  res.render("edit-entry.ejs", { entryToEdit: fetchEntry });
+});
+
+app.post("/edit-entry/:postId", async (req, res) => {
+  const entryIndex = req.params.postId;
+  const updatedRating = req.body.rating;
+  const updateReview = req.body.review;
+
+  try {
+    await db.query(
+      "UPDATE reviews SET rating = $1, review = $2 WHERE id = $3",
+      [updatedRating, updateReview, entryIndex]
+    );
+
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error details: ", error.message);
+    res.send("Could not update entry.");
+  }
 });
 
 app.listen(port, () => {
