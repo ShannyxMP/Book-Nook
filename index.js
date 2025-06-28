@@ -103,6 +103,24 @@ app.post("/edit-entry/:postId", async (req, res) => {
   }
 });
 
+app.get("/delete/:postId", async (req, res) => {
+  const entryIndex = req.params.postId;
+  // console.log(entryIndex);
+
+  try {
+    const result = await db.query(
+      "DELETE FROM reviews WHERE reviews.id = $1 RETURNING *",
+      [entryIndex]
+    );
+
+    console.log("Deleted the following entry: ", result);
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error details: ", error.message);
+    res.send("Could not delete entry.");
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

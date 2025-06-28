@@ -24,7 +24,13 @@
           </p>
           <div class="entry-tidbits-buttons">
             <a href="/edit/<%= entry.review_id %>">Edit</a>
-            <button>Delete</button>
+            <form method="POST">
+              <a
+                href="/delete/<%= entry.review_id %>"
+                onclick="return confirm('Are you sure you want to delete this entry?')"
+                >Delete</a
+              >
+            </form>
           </div>
         </div>
       </div>
