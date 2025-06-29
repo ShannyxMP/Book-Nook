@@ -25,9 +25,9 @@ let books = [
     id: 1, // SERIAL PRIMARY KEY
     title: "City of thieves", // VARCHAR(100)
     author: "David Benioff", //VARCHAR(100)
-    book_cover: "https://covers.openlibrary.org/b/isbn/0452295297.jpg", // VARCHAR(255)
-    isbn: "0452295297", // VARCHAR(15) UNIQUE NOT NULL, CHECK (char_length(ISBN) = 10 OR char_length(ISBN) = 13)
-    ol_link: "https://openlibrary.org/isbn/0452295297", // VARCHAR(255)
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780452295292.jpg", // VARCHAR(255)
+    isbn: "9780452295292", // VARCHAR(15) UNIQUE NOT NULL, CHECK (char_length(ISBN) = 10 OR char_length(ISBN) = 13)
+    ol_link: "https://openlibrary.org/isbn/9780452295292", // VARCHAR(255)
   },
 ];
 
@@ -36,7 +36,7 @@ let reviews = [
     id: 1, // SERIAL PRIMARY KEY
     rating: 4, // NOT NULL, CHECK (rating >= 0 AND rating <=5)
     review: "Featured in the The Last of Us Part II game. It was interesting.", // TEXT
-    book_isbn: "0452295297", // VARCHAR(13)
+    book_isbn: "9780452295292", // VARCHAR(13)
     date_created: "2025-06-22", // DATE NOT NULL DEFAULT CURRENT_DATE
   },
 ];
@@ -58,7 +58,7 @@ async function obtainBookReviews() {
         entries.push(entry);
       });
     } else {
-      console.log("No reviews found for this book.");
+      console.log("No reviews found.");
     }
   } catch (error) {
     console.error("Error details: ", error.message);
@@ -66,10 +66,10 @@ async function obtainBookReviews() {
 }
 
 app.get("/", async (req, res) => {
-  console.log("You're on the homepage.");
+  // console.log("You're on the homepage.");
 
   await obtainBookReviews();
-  console.log(entries);
+  // console.log(entries);
 
   res.render("index.ejs", { Entries: entries });
 });

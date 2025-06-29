@@ -2,12 +2,12 @@
 
 <main>
   <div class="entries-flex">
-    <!-- TODO: SETUP TO VIEW ENTRIES IN TABLES -->
+    
     <% for (let entry of Entries) { %>
     <div class="entry-grid">
       <img
         src="<%= entry.book_cover %>"
-        alt="book cover for <%= entry.Title %>"
+        alt="book cover for <%= entry.title %>"
       />
       <div class="entry-text-container">
         <div class="entry-title">
