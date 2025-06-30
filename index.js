@@ -6,6 +6,8 @@ import env from "dotenv";
 
 const app = express();
 const port = 3000;
+const baseURL = "https://openlibrary.org/";
+
 env.config();
 
 const db = new pg.Client({
@@ -72,6 +74,75 @@ app.get("/", async (req, res) => {
   // console.log(entries);
 
   res.render("index.ejs", { Entries: entries });
+});
+app.get("/add-entry", async (req, res) => {
+  res.render("add-entry.ejs", { book: null });
+});
+
+app.post("/fetch-new-entry", async (req, res) => {
+  // console.log(req.body);
+  let isbn = req.body.isbn;
+  // [x]: Ensure to filter through different inputs
+  isbn = isbn.replaceAll("-", ""); // Removes all hyphens
+  const isValidISBN = /^[0-9]{10}([0-9]{3})?$/.test(isbn);
+  console.log(`ISBN: ${isbn}, Is it a valid input? ${isValidISBN}`);
+
+  if (isValidISBN) {
+    try {
+    const result = await axios.get(`${baseURL}/isbn/${isbn}.json`);
+    // console.log(result);
+
+    const bookDetails = {
+      title: result.data.title,
+      author: result.data.by_statement,
+      book_cover: `https://covers.openlibrary.org/b/isbn/${result.data.isbn_13}.jpg`,
+      isbn: result.data.isbn_13[0],
+      ol_link: `https://openlibrary.org/isbn/${result.data.isbn_13}`,
+    };
+    // console.log(bookDetails);
+
+    res.render("add-entry.ejs", { book: bookDetails });
+    } catch (error) {
+      console.error("Error details: ", error.message);
+    }
+  } else {
+    res
+      .status(400)
+      .send(
+        "Invalid ISBN. Must be 10 or 13 digits. Hyphenated format is allowed."
+      );
+  }
+});
+
+app.post("/post-new-entry", async (req, res) => {
+  const {
+    bookTitle: title,
+    bookAuthor: author,
+    bookCover: book_cover,
+    bookISBN: isbn,
+    bookOLlink: ol_link,
+    rating,
+    review,
+  } = req.body;
+
+  console.log({ title, author, book_cover, isbn, ol_link, rating, review });
+
+  try {
+    const bookResult = await db.query(
+      "INSERT INTO books (title, author, book_cover, isbn, ol_link) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (isbn) DO UPDATE SET title = EXCLUDED.title, author = EXCLUDED.author, book_cover = EXCLUDED.book_cover, ol_link = EXCLUDED.ol_link RETURNING *",
+      [title, author, book_cover, isbn, ol_link]
+    );
+    const reviewResult = await db.query(
+      "INSERT INTO reviews (rating, review, book_isbn) VALUES ($1, $2, $3) RETURNING *",
+      [rating, review, isbn]
+    );
+    console.log(bookResult, reviewResult);
+
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error details: ", error.message);
+    res.status(500).send("Failed to add book and review to database.");
+  }
 });
 
 app.get("/edit/:postId", async (req, res) => {

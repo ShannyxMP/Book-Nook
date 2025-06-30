@@ -1,0 +1,85 @@
+<%- include("partials/header.ejs") %>
+
+<!-- TODO: Create a preview window: -->
+
+<form action="/fetch-new-entry" method="POST">
+  <p>ISBN 10 / 13 (relevant information will be auto-populated for you):</p>
+  <input
+    type="text"
+    name="isbn"
+    placeholder="e.g. 978-0-452-29529-2 or 0452295297"
+    minlength="10"
+    maxlength="17"
+    required
+    pattern="^(?:[(0-9)][-(0-9)]{9}|\d[-(0-9)]{12}|\d[-(0-9)]{16})$"
+  />
+  <div>
+    <a href="/">Cancel</a>
+    <input type="submit" value="Find book" />
+  </div>
+</form>
+
+<p>Preview</p>
+
+<% if (book) { %>
+
+<div class="entry-grid">
+  <img src="<%= book.book_cover %>" alt="book cover for <%= book.title %>" />
+  <div class="entry-text-container">
+    <div class="entry-title">
+      <h3>
+        <a href="<%= book.ol_link %>" target="_blank" rel="noopener noreferrer"
+          ><%= book.title %></a
+        >
+      </h3>
+      <p>by <%= book.author %></p>
+    </div>
+
+    <form action="/post-new-entry" method="POST">
+      <!-- NOTE: JSON.stringify(book) was not working and resorted to approach below: -->
+      <input type="hidden" name="bookTitle" value="<%= book.title %>" />
+      <input type="hidden" name="bookCover" value="<%= book.book_cover %>" />
+      <input type="hidden" name="bookISBN" value="<%= book.isbn %>" />
+      <input type="hidden" name="bookOLlink" value="<%= book.ol_link %>" />
+
+      <p>Author</p>
+      <input
+        type="text"
+        name="bookAuthor"
+        placeholder="Author"
+        value="<%= book.author %>"
+        required
+      />
+
+      <p>Rating:</p>
+      <% for (let i = 0; i < 6; i++) { %>
+      <input
+        id="<%= i %>"
+        type="radio"
+        name="rating"
+        value="<%= i %>"
+        required
+      />
+      <label for="<%= i %>"><%= i %></label>
+      <% } %>
+      <p>Review:</p>
+      <textarea
+        name="review"
+        placeholder="Write your review here..."
+        required
+      ></textarea>
+      <div>
+        <a href="/">Cancel</a>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<% } %>
+
+<!-- TODO: Define rating and review -->
+<!-- TODO: Make sure there is a preview pane - add another .ejs file: 
+ one to search and auto-populate book information; the other to write the review and rating -->
+
+<%- include("partials/footer.ejs") %>
