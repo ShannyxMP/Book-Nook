@@ -42,15 +42,6 @@
       <input type="hidden" name="bookISBN" value="<%= book.isbn %>" />
       <input type="hidden" name="bookOLlink" value="<%= book.ol_link %>" />
 
-      <p>Author</p>
-      <input
-        type="text"
-        name="bookAuthor"
-        placeholder="Author"
-        value="<%= book.author %>"
-        required
-      />
-
       <p>Rating:</p>
       <% for (let i = 0; i < 6; i++) { %>
       <input
