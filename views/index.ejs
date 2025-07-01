@@ -13,7 +13,14 @@
       />
       <div class="entry-text-container">
         <div class="entry-title">
-          <h3><a href="<%= entry.ol_link %>"><%= entry.title %></a></h3>
+          <h3>
+            <a
+href="<%= entry.ol_link %>"
+              target="_blank"
+              rel="noopener noreferrer"
+><%= entry.title %></a
+            >
+</h3>
           <p>by <%= entry.author %></p>
         </div>
         <p>Rating: <%= entry.rating %> / 5</p>
