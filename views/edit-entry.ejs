@@ -25,6 +25,16 @@ href="<%= entryToEdit.ol_link %>"
       </p>
     </div>
     <form action="/edit-entry/<%= entryToEdit.review_id %>" method="POST">
+<input type="hidden" name="isbn" value="<%= entryToEdit.book_isbn %>" />
+
+      <p>Author:</p>
+      <input
+        type="text"
+        name="author"
+        placeholder="Author"
+        value="<%= entryToEdit.author %>"
+        required
+      />
       <p>Rating:</p>
       <% for (let i = 0; i < 6; i++) { %> <input id="<%= i %>" type="radio"
       name="rating" value="<%= i %>" required <%= entryToEdit.rating == i ?

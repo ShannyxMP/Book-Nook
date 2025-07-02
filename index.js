@@ -161,11 +161,21 @@ app.post("/edit-entry/:postId", async (req, res) => {
   const updatedRating = req.body.rating;
   const updateReview = req.body.review;
 
+  const updateAuthor = req.body.author;
+  const isbn = req.body.isbn;
+
+  console.log(updateAuthor, isbn);
+
   try {
     await db.query(
       "UPDATE reviews SET rating = $1, review = $2 WHERE id = $3",
       [updatedRating, updateReview, entryIndex]
     );
+
+    await db.query("UPDATE books SET author = $1 WHERE isbn = $2", [
+      updateAuthor,
+      isbn,
+    ]);
 
     res.redirect("/");
   } catch (error) {
