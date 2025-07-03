@@ -44,11 +44,12 @@ let reviews = [
 ];
 
 let entries = [];
+let sorting = "reviews.date_created DESC";
 
 async function obtainBookReviews() {
   try {
     const result = await db.query(
-      "SELECT reviews.id AS review_id, books.title, books.author, books.book_cover, books.ol_link, reviews.rating, reviews.review, reviews.date_created FROM books JOIN reviews ON books.isbn = reviews.book_isbn ORDER BY reviews.date_created ASC"
+      `SELECT reviews.id AS review_id, books.title, books.author, books.book_cover, books.ol_link, reviews.rating, reviews.review, reviews.book_isbn, reviews.date_created FROM books JOIN reviews ON books.isbn = reviews.book_isbn ORDER BY ${sorting}`
     );
     // console.log(result);
     // console.log("Number of rows: ", result.rows.length);
@@ -75,6 +76,13 @@ app.get("/", async (req, res) => {
 
   res.render("index.ejs", { Entries: entries });
 });
+
+app.post("/sort", (req, res) => {
+  console.log(req.body);
+  sorting = req.body.sortBy;
+  res.redirect("/");
+});
+
 app.get("/add-entry", async (req, res) => {
   res.render("add-entry.ejs", { book: null });
 });
@@ -89,19 +97,19 @@ app.post("/fetch-new-entry", async (req, res) => {
 
   if (isValidISBN) {
     try {
-    const result = await axios.get(`${baseURL}/isbn/${isbn}.json`);
-    // console.log(result);
+      const result = await axios.get(`${baseURL}/isbn/${isbn}.json`);
+      // console.log(result);
 
-    const bookDetails = {
-      title: result.data.title,
-      author: result.data.by_statement,
-      book_cover: `https://covers.openlibrary.org/b/isbn/${result.data.isbn_13}.jpg`,
-      isbn: result.data.isbn_13[0],
-      ol_link: `https://openlibrary.org/isbn/${result.data.isbn_13}`,
-    };
-    // console.log(bookDetails);
+      const bookDetails = {
+        title: result.data.title,
+        author: result.data.by_statement,
+        book_cover: `https://covers.openlibrary.org/b/isbn/${result.data.isbn_13}.jpg`,
+        isbn: result.data.isbn_13[0],
+        ol_link: `https://openlibrary.org/isbn/${result.data.isbn_13}`,
+      };
+      // console.log(bookDetails);
 
-    res.render("add-entry.ejs", { book: bookDetails });
+      res.render("add-entry.ejs", { book: bookDetails });
     } catch (error) {
       console.error("Error details: ", error.message);
     }
