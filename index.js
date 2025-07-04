@@ -71,10 +71,37 @@ async function obtainBookReviews() {
 app.get("/", async (req, res) => {
   // console.log("You're on the homepage.");
 
+  let booksReadTotal;
+  let booksReadThisYear;
+
+  const currentYear = new Date().getFullYear();
+
   await obtainBookReviews();
   // console.log(entries);
 
-  res.render("index.ejs", { Entries: entries });
+  try {
+    // [x]: Add a query to know how many books read
+    const result1 = await db.query(
+      "SELECT * FROM books JOIN reviews ON books.isbn = reviews.book_isbn"
+    );
+
+    const result2 = await db.query(
+      `SELECT * FROM books JOIN reviews ON books.isbn = reviews.book_isbn WHERE date_created >= '${currentYear}-01-01'`
+    );
+    console.log("Total Books: ", result1.rows.length);
+    console.log("Books this Year: ", result2.rows.length);
+
+    booksReadTotal = result1.rows.length;
+    booksReadThisYear = result2.rows.length;
+  } catch (error) {
+    console.error("Error: ", error.message);
+  }
+
+  res.render("index.ejs", {
+    Entries: entries,
+    bookCountTotal: booksReadTotal,
+    bookCountYear: booksReadThisYear,
+  });
 });
 
 app.post("/sort", (req, res) => {
