@@ -98,7 +98,7 @@ app.get("/", async (req, res) => {
   }
 
   res.render("index.ejs", {
-    Entries: entries,
+    listOfEntries: entries,
     bookCountTotal: booksReadTotal,
     bookCountYear: booksReadThisYear,
   });
@@ -111,7 +111,7 @@ app.post("/sort", (req, res) => {
 });
 
 app.get("/add-entry", async (req, res) => {
-  res.render("add-entry.ejs", { book: null });
+  res.render("add-entry.ejs", { entryToAdd: null });
 });
 
 app.post("/fetch-new-entry", async (req, res) => {
@@ -136,7 +136,7 @@ app.post("/fetch-new-entry", async (req, res) => {
       };
       // console.log(bookDetails);
 
-      res.render("add-entry.ejs", { book: bookDetails });
+      res.render("add-entry.ejs", { entryToAdd: bookDetails });
     } catch (error) {
       console.error("Error details: ", error.message);
     }

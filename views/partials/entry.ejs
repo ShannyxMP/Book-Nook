@@ -1,31 +1,110 @@
 <div class="entry-grid">
-  <img src="<%= entry.book_cover %>" alt="book cover for <%= entry.title %>" />
-  <div class="entry-text-container">
-    <div class="entry-title">
-      <h3>
-        <a href="<%= entry.ol_link %>" target="_blank" rel="noopener noreferrer"
-          ><%= entry.title %></a
-        >
-      </h3>
-      <p>by <%= entry.author %></p>
+  <img src="<%= entryDetails.book_cover %>" alt="book cover for <%= entryDetails.title %>" />
+
+  <div class="entry-title">
+    <h3>
+      <a href="<%= entryDetails.ol_link %>" target="_blank" rel="noopener noreferrer"
+        ><%= entryDetails.title %></a
+      >
+    </h3>
+  </div>
+
+  <div class="entry-author">
+    <p>
+      by <% if (entryDetails.author) { %> <%= entryDetails.author %> <% } else { %>
+      <em>No Author yet. Please update.</em>
+      <% } %>
+    </p>
+  </div>
+
+  <div class="entry-content-container">
+    <div class="entry-display-review_rating">
+      <p>
+        <% if (entryDetails.rating) { %> Rating: <%= entryDetails.rating %> / 5 <% } else { %>
+        No rating yet. Fill form below. <% } %>
+      </p>
+      <p>
+        <% if (entryDetails.review) { %> Review: <%= entryDetails.review %> <% } else { %> No
+        review yet. Fill form below. <% } %>
+      </p>
     </div>
-    <p>Rating: <%= entry.rating %> / 5</p>
-    <p>Review: <%= entry.review %></p>
+
     <div class="entry-tidbits">
+      <% if (showDatePublished) { %>
       <p>
         Date Created: <% const formattedDate = new
-        Date(entry.date_created).toLocaleDateString(); %> <%= formattedDate %>
+        Date(entryDetails.date_created).toLocaleDateString(); %> <%= formattedDate %>
       </p>
-      <div class="entry-tidbits-buttons">
-        <a href="/edit/<%= entry.review_id %>">Edit</a>
+      <% } %>
+
+      <% if (showButtons) { %>
+      <div class="entry-buttons">
+        <a href="/edit/<%= entryDetails.review_id %>">Edit</a>
         <form method="POST">
           <a
-            href="/delete/<%= entry.review_id %>"
+            href="/delete/<%= entryDetails.review_id %>"
             onclick="return confirm('Are you sure you want to delete this entry?')"
             >Delete</a
           >
         </form>
       </div>
+      <% } %>
+
     </div>
+
+      <% if (showForm) { %> 
+        
+        <% if (showEditForm) { %>
+      <form action="/edit-entry/<%= entryDetails.review_id %>" method="POST">
+        <input type="hidden" name="isbn" value="<%= entryDetails.book_isbn %>" />
+        <% } %>
+
+         <% if (showPostForm) { %>
+      <form action="/post-new-entry" method="POST">
+        <!-- NOTE: JSON.stringify(book) was not working and resorted to approach below: -->
+        <input type="hidden" name="bookTitle" value="<%= entryDetails.title %>" />
+        <input type="hidden" name="bookCover" value="<%= entryDetails.book_cover %>" />
+        <input type="hidden" name="bookISBN" value="<%= entryDetails.isbn %>" />
+        <input type="hidden" name="bookOLlink" value="<%= entryDetails.ol_link %>" />
+         <% } %>
+
+        <div class="entry-input-author">
+          <p>Author:</p>
+          <input
+             type="text"
+             name="author"
+             placeholder="Author"
+             value="<%= entryDetails.author %>"
+             required
+          />
+        </div>
+
+        <div class="entry-input-rating">
+           <p>Rating:</p>
+           <% for (let i = 0; i < 6; i++) { %> <input id="<%= i %>" type="radio"
+           name="rating" value="<%= i %>" required <%= entryDetails.rating == i ?
+           "checked" : "" %> />
+           <!-- entryDetails.rating == i ? "checked" : ""  <--  So that the user can see which rating was originally selected  -->
+           <label for="<%= i %>"><%= i %></label>
+           <% } %>
+        </div>
+
+        <div class="entry-input-review">
+           <p>Review:</p>
+           <textarea
+             name="review"
+             placeholder="Write your review here..."
+             required
+           >
+   <%= entryDetails.review %></textarea
+           >
+        </div>
+
+        <div>
+          <a href="/">Cancel</a>
+          <input type="submit" value="Submit" />
+        </div>
+      </form>
+      <% } %>
   </div>
 </div>
