@@ -2,6 +2,7 @@
 
 <form action="/fetch-new-entry" method="POST">
   <p>ISBN 10 / 13 (relevant information will be auto-populated for you):</p>
+
   <input
     type="text"
     name="isbn"
@@ -11,6 +12,7 @@
     required
     pattern="^(?:[(0-9)][-(0-9)]{9}|\d[-(0-9)]{12}|\d[-(0-9)]{16})$"
   />
+  
   <div>
     <a href="/">Cancel</a>
     <input type="submit" value="Find book" />
@@ -19,11 +21,16 @@
 
 <p>Preview pane:</p>
 
-<% if (entryToAdd) { %> <%- include("partials/entry.ejs", { entryDetails:
-entryToAdd, showDatePublished: true, showButtons: false, showForm: true,
-showEditForm: false, showPostForm: true }) %> <% } %>
-
-<!-- [x]: Make sure there is a preview pane - ?add another .ejs file: 
- one to search and auto-populate book information; the other to write the review and rating -->
+<% if (entryToAdd) { %> 
+  <%- include("partials/entry.ejs", { 
+    entryDetails: entryToAdd, 
+    // Conditionals:
+    showDatePublished: true, 
+    showButtons: false, 
+    showForm: true,
+    showEditForm: false, 
+    showPostForm: true 
+  }) %> 
+<% } %>
 
 <%- include("partials/footer.ejs") %>

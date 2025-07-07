@@ -7,7 +7,9 @@
   </div>
 
   <div class="entries-flex">
-    <div><a href="/add-entry">Add New Entry</a></div>
+    <div>
+      <a href="/add-entry">Add New Entry</a>
+    </div>
 
     <div>
       <form action="/sort" method="POST">
@@ -23,10 +25,16 @@
     </div>
 
     <% for (let entry of listOfEntries) { %>
-    <!-- [x]: Make it usable not only on homepage, but in add & edit entry files -->
-    <%- include("partials/entry.ejs", { entryDetails: entry, // Conditionals:
-    showDatePublished: true, showButtons: true, showForm: false, showEditForm:
-    false, showPostForm: false }) %> <% } %>
+      <%- include("partials/entry.ejs", { 
+        entryDetails: entry, 
+        // Conditionals:
+        showDatePublished: true, 
+        showButtons: true, 
+        showForm: false, 
+        showEditForm: false, 
+        showPostForm: false 
+      }) %> 
+    <% } %>
   </div>
 </main>
 

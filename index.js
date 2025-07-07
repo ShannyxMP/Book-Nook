@@ -7,6 +7,7 @@ import env from "dotenv";
 const app = express();
 const port = 3000;
 const baseURL = "https://openlibrary.org/";
+const currentYear = new Date().getFullYear();
 
 env.config();
 
@@ -51,11 +52,9 @@ async function obtainBookReviews() {
     const result = await db.query(
       `SELECT reviews.id AS review_id, books.title, books.author, books.book_cover, books.ol_link, reviews.rating, reviews.review, reviews.book_isbn, reviews.date_created FROM books JOIN reviews ON books.isbn = reviews.book_isbn ORDER BY ${sorting}`
     );
-    // console.log(result);
-    // console.log("Number of rows: ", result.rows.length);
-
+    
     if (result.rows.length > 0) {
-      // console.log("You've got some results.", result.rows);
+      console.log("Results: ", result.rows);
       entries = []; // To ensure there are no double-ups
       result.rows.forEach((entry) => {
         entries.push(entry);
@@ -69,30 +68,21 @@ async function obtainBookReviews() {
 }
 
 app.get("/", async (req, res) => {
-  // console.log("You're on the homepage.");
-
-  let booksReadTotal;
+    let booksReadTotal;
   let booksReadThisYear;
 
-  const currentYear = new Date().getFullYear();
-
+  try {
   await obtainBookReviews();
   // console.log(entries);
 
-  try {
-    // [x]: Add a query to know how many books read
-    const result1 = await db.query(
-      "SELECT * FROM books JOIN reviews ON books.isbn = reviews.book_isbn"
-    );
-
-    const result2 = await db.query(
+      const result = await db.query(
       `SELECT * FROM books JOIN reviews ON books.isbn = reviews.book_isbn WHERE date_created >= '${currentYear}-01-01'`
     );
-    console.log("Total Books: ", result1.rows.length);
-    console.log("Books this Year: ", result2.rows.length);
+    console.log("Total Books: ", entries.length);
+    console.log("Books this Year: ", result.rows.length);
 
-    booksReadTotal = result1.rows.length;
-    booksReadThisYear = result2.rows.length;
+    booksReadTotal = entries.length;
+    booksReadThisYear = result.rows.length;
   } catch (error) {
     console.error("Error: ", error.message);
   }
@@ -115,9 +105,8 @@ app.get("/add-entry", async (req, res) => {
 });
 
 app.post("/fetch-new-entry", async (req, res) => {
-  // console.log(req.body);
   let isbn = req.body.isbn;
-  // [x]: Ensure to filter through different inputs
+
   isbn = isbn.replaceAll("-", ""); // Removes all hyphens
   const isValidISBN = /^[0-9]{10}([0-9]{3})?$/.test(isbn);
   console.log(`ISBN: ${isbn}, Is it a valid input? ${isValidISBN}`);
@@ -125,8 +114,7 @@ app.post("/fetch-new-entry", async (req, res) => {
   if (isValidISBN) {
     try {
       const result = await axios.get(`${baseURL}/isbn/${isbn}.json`);
-      // console.log(result);
-
+      
       const bookDetails = {
         title: result.data.title,
         author: result.data.by_statement,
@@ -193,11 +181,13 @@ app.get("/edit/:postId", async (req, res) => {
 
 app.post("/edit-entry/:postId", async (req, res) => {
   const entryIndex = req.params.postId;
-  const updatedRating = req.body.rating;
-  const updateReview = req.body.review;
-
-  const updateAuthor = req.body.author;
-  const isbn = req.body.isbn;
+  
+  const {
+    rating: updatedRating,
+    review: updateReview,
+    author: updateAuthor,
+    isbn,
+  } = req.body;
 
   console.log(updateAuthor, isbn);
 

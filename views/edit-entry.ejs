@@ -1,5 +1,14 @@
-<%- include("partials/header.ejs") %> <% if (entryToEdit) { %>
-<!-- [x]: Make it usable not only on homepage, but in add & edit entry files -->
-<%- include("partials/entry.ejs", { entryDetails: entryToEdit, // Conditionals:
-showDatePublished: true, showButtons: false, showForm: true, showEditForm: true,
-showPostForm: false }) %> <% } %> <%- include("partials/footer.ejs") %>
+<%- include("partials/header.ejs") %> 
+
+<% if (entryToEdit) { %>
+    <%- include("partials/entry.ejs", { 
+        entryDetails: entryToEdit, 
+        // Conditionals:
+        showDatePublished: true, 
+        showButtons: false, 
+        showForm: true, 
+        showEditForm: true,
+        showPostForm: false 
+    }) %> 
+<% } %> 
+
