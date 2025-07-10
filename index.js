@@ -52,7 +52,7 @@ async function obtainBookReviews() {
     const result = await db.query(
       `SELECT reviews.id AS review_id, books.title, books.author, books.book_cover, books.ol_link, reviews.rating, reviews.review, reviews.book_isbn, reviews.date_created FROM books JOIN reviews ON books.isbn = reviews.book_isbn ORDER BY ${sorting}`
     );
-    
+
     if (result.rows.length > 0) {
       console.log("Results: ", result.rows);
       entries = []; // To ensure there are no double-ups
@@ -68,14 +68,14 @@ async function obtainBookReviews() {
 }
 
 app.get("/", async (req, res) => {
-    let booksReadTotal;
+  let booksReadTotal;
   let booksReadThisYear;
 
   try {
-  await obtainBookReviews();
-  // console.log(entries);
+    await obtainBookReviews();
+    // console.log(entries);
 
-      const result = await db.query(
+    const result = await db.query(
       `SELECT * FROM books JOIN reviews ON books.isbn = reviews.book_isbn WHERE date_created >= '${currentYear}-01-01'`
     );
     console.log("Total Books: ", entries.length);
@@ -91,6 +91,7 @@ app.get("/", async (req, res) => {
     listOfEntries: entries,
     bookCountTotal: booksReadTotal,
     bookCountYear: booksReadThisYear,
+    year: currentYear,
   });
 });
 
@@ -101,7 +102,7 @@ app.post("/sort", (req, res) => {
 });
 
 app.get("/add-entry", async (req, res) => {
-  res.render("add-entry.ejs", { entryToAdd: null });
+  res.render("add-entry.ejs", { entryToAdd: null, year: currentYear });
 });
 
 app.post("/fetch-new-entry", async (req, res) => {
@@ -114,7 +115,7 @@ app.post("/fetch-new-entry", async (req, res) => {
   if (isValidISBN) {
     try {
       const result = await axios.get(`${baseURL}/isbn/${isbn}.json`);
-      
+
       const bookDetails = {
         title: result.data.title,
         author: result.data.by_statement,
@@ -124,7 +125,10 @@ app.post("/fetch-new-entry", async (req, res) => {
       };
       // console.log(bookDetails);
 
-      res.render("add-entry.ejs", { entryToAdd: bookDetails });
+      res.render("add-entry.ejs", {
+        entryToAdd: bookDetails,
+        year: currentYear,
+      });
     } catch (error) {
       console.error("Error details: ", error.message);
     }
@@ -176,12 +180,12 @@ app.get("/edit/:postId", async (req, res) => {
   const fetchEntry = entries.find((entry) => entry.review_id == entryIndex);
   // console.log("Fetched entry: ", fetchEntry);
 
-  res.render("edit-entry.ejs", { entryToEdit: fetchEntry });
+  res.render("edit-entry.ejs", { entryToEdit: fetchEntry, year: currentYear });
 });
 
 app.post("/edit-entry/:postId", async (req, res) => {
   const entryIndex = req.params.postId;
-  
+
   const {
     rating: updatedRating,
     review: updateReview,
