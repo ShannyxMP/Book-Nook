@@ -39,17 +39,18 @@
 
       <% if (showButtons) { %>
       <div class="entry-buttons">
-        <a href="/edit/<%= entryDetails.review_id %>">Edit</a>
+      <a href="/edit/<%= entryDetails.review_id %>"><span class="material-icons-round">edit</span></a>
         <form method="POST">
           <a
             href="/delete/<%= entryDetails.review_id %>"
             onclick="return confirm('Are you sure you want to delete this entry?')"
-            >Delete</a
+          >
+          <span class="material-icons-round">delete</span>
+          </a
           >
         </form>
       </div>
       <% } %>
-
     </div>
 
       <% if (showForm) { %> 
