@@ -13,6 +13,10 @@ main {
   margin: 0 8px;
 }
 
+a {
+  text-decoration: none;
+}
+
 /******************** MOBILE FIRST ********************/
 /********** HEADER CONTENT **********/
 header {
@@ -33,9 +37,9 @@ header {
   background-size: cover;
 
   color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 #title span {
@@ -46,8 +50,66 @@ header {
   display: flex;
   align-items: center;
 
-  text-decoration: none;
   color: #ab6700;
 }
 
+/********** FOOTER CONTENT **********/
+footer {
+  width: 100%;
+  position: relative;
+}
+
+footer p {
+  font-size: small;
+  font-weight: bold;
+  font-family: "Merriweather", serif;
+  text-shadow: -2px -2px rgba(108, 89, 89, 0.401);
+
+  /* Background clipped to text */
+  background: radial-gradient(#9a9a9a, #cacaca),
+    url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
+  background-size: cover;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+footer a:hover {
+  /* Background clipped to text */
+  background: radial-gradient(#ffffff, #cacaca),
+    url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
+  background-size: cover;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.ribbon {
+  height: 4rem;
+  width: 90%;
+
+  position: absolute;
+  right: 0px;
+
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(#940e20, #5b000b);
+}
+
+.ribbon:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-left: 2rem solid #140c09;
+  border-right: 2rem solid transparent;
+  border-top: 2rem solid transparent;
+  border-bottom: 2rem solid transparent;
 }
