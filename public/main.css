@@ -1,5 +1,5 @@
 html {
-  background-color: #0a0300;
+  background-color: #0a0027;
   background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
   color: white;
   font-family: "Inter", sans-serif;
@@ -32,7 +32,7 @@ header {
   text-shadow: -2px -2px rgba(0, 0, 0, 0.401);
 
   /* Background clipped to text */
-  background: radial-gradient(#424242, #828282),
+  background: radial-gradient(#91630f, #e39f00),
     url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
   background-size: cover;
 
@@ -53,6 +53,7 @@ header {
   color: #ab6700;
 }
 
+/******************** MOBILE FIRST ********************/
 /********** FOOTER CONTENT **********/
 footer {
   width: 100%;
@@ -63,10 +64,10 @@ footer p {
   font-size: small;
   font-weight: bold;
   font-family: "Merriweather", serif;
-  text-shadow: -2px -2px rgba(108, 89, 89, 0.401);
+  text-shadow: -1px -1px rgba(108, 89, 89, 0.401);
 
   /* Background clipped to text */
-  background: radial-gradient(#9a9a9a, #cacaca),
+  background: radial-gradient(#91630f, #e39f00),
     url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
   background-size: cover;
 
@@ -74,6 +75,16 @@ footer p {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-left: 30px;
+}
+
+footer span {
+  font-size: 1.5rem;
 }
 
 footer a:hover {
@@ -107,8 +118,8 @@ footer a:hover {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 0;
-  border-left: 2rem solid #140c09;
+  left: -1px;
+  border-left: 2rem solid #120b27;
   border-right: 2rem solid transparent;
   border-top: 2rem solid transparent;
   border-bottom: 2rem solid transparent;
