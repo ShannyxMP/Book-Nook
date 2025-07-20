@@ -16,21 +16,24 @@
 
 <main>
   <div class="entries-flex">
-    <div>
-      <a href="/add-entry">Add New Entry <span class="material-icons-round">add</span></a>
-    </div>
+    <div class="buttons-flex">
+      <div>
+        <a href="/add-entry">New Entry <span class="material-icons-round">add</span></a>
+      </div>
 
-    <div>
-      <form action="/sort" method="POST">
-        <label for="sortBy">Sort by:</label>
-        <select name="sortBy" id="sortBy" onclick="submitIfOptionChosen(this)">
-          <option value="" disabled selected>Select sorting</option>
-          <option value="reviews.date_created DESC">Newest</option>
-          <option value="reviews.date_created ASC">Oldest</option>
-          <option value="books.title ASC">Title (A-Z)</option>
-          <option value="books.title DESC">Title (Z-A)</option>
-        </select>
-      </form>
+      <div>
+        <form action="/sort" method="POST">
+          <!-- <label for="sortBy">Sort by:</label> -->
+          <span class="material-icons-sharp">sort_by_alpha</span>
+          <select name="sortBy" id="sortBy" onclick="submitIfOptionChosen(this)">
+            <option value="" disabled selected>Sort</option>
+            <option value="reviews.date_created DESC">Newest</option>
+            <option value="reviews.date_created ASC">Oldest</option>
+            <option value="books.title ASC">Title (A-Z)</option>
+            <option value="books.title DESC">Title (Z-A)</option>
+          </select>
+        </form>
+      </div>
     </div>
 
     <% for (let entry of listOfEntries) { %>

@@ -166,3 +166,24 @@ footer a:hover {
   font-size: 3rem;
   font-weight: 900;
 }
+
+/********** ADD ENTRY/SORTING BUTTONS **********/
+.buttons-flex {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons-flex a,
+span {
+  color: #ab6700;
+}
+
+#sortBy {
+  width: 20px;
+  background-color: transparent;
+  color: #ab6700;
+  border: none;
+}
