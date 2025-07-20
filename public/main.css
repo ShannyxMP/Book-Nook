@@ -20,8 +20,7 @@ a {
 /******************** MOBILE FIRST ********************/
 /********** HEADER CONTENT **********/
 header {
-  margin-top: 20px;
-  margin-left: 20px;
+  margin: 20px;
 }
 
 #title {
@@ -123,4 +122,47 @@ footer a:hover {
   border-right: 2rem solid transparent;
   border-top: 2rem solid transparent;
   border-bottom: 2rem solid transparent;
+}
+
+/******************** MOBILE FIRST ********************/
+/********** HOMEPAGE CONTENT **********/
+.stats {
+  height: 4rem;
+  width: 100%;
+
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: space-around;
+  align-items: center;
+
+  background: linear-gradient(#940e20, #5b000b);
+
+  margin-bottom: 20px;
+}
+
+.stats p {
+  font-size: small;
+  font-weight: bold;
+  font-family: "Merriweather", serif;
+  text-shadow: -1px -1px rgba(108, 89, 89, 0.401);
+  text-align: right;
+
+  /* Background clipped to text */
+  background: radial-gradient(#91630f, #e39f00),
+    url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
+  background-size: cover;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stats span {
+  font-size: 3rem;
+  font-weight: 900;
 }

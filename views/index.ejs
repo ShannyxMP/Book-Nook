@@ -1,11 +1,20 @@
 <%- include("partials/header.ejs") %>
 
-<main>
+<div class="stats">
+  <p>
+    Books reviewed this
+    <br>
+    YEAR | TOTAL : 
+  </p>
   <div>
-    <p>Number of books review in total: <%= bookCountTotal %></p>
-    <p>Number of books read this year: <%= bookCountYear %></p>
+    <p>
+      <span><%= bookCountYear %></span> |
+      <span><%= bookCountTotal %></span>
+    </p>
+  </div>
   </div>
 
+<main>
   <div class="entries-flex">
     <div>
       <a href="/add-entry">Add New Entry <span class="material-icons-round">add</span></a>
