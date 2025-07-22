@@ -1,0 +1,85 @@
+html {
+  background-color: #000000;
+  background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
+  color: #f1eaea;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  margin: 0 8px;
+}
+
+a {
+  text-decoration: none;
+  color: #f1eaea;
+}
+
+a:hover {
+  color: #8800ff;
+}
+
+/******************** MOBILE FIRST ********************/
+/********** HEADER CONTENT **********/
+header {
+  margin: 20px;
+}
+
+#title {
+  margin: 0;
+
+  font-family: "Permanent Marker", serif;
+  font-size: 3rem;
+}
+
+#title span {
+  font-size: 3rem;
+}
+
+#title a {
+  display: flex;
+  align-items: center;
+}
+
+/******************** MOBILE FIRST ********************/
+/********** FOOTER CONTENT **********/
+footer {
+  width: 100%;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: end;
+
+  margin-top: 20px;
+
+  background-color: #f1eaea;
+}
+
+footer p {
+  margin: 0;
+
+  font-size: small;
+  font-family: "Permanent Marker", serif;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #202020;
+}
+
+footer a {
+  color: #202020;
+}
+
+footer span {
+  font-size: 1.5rem;
+  color: #202020;
+}
+
+/******************** MOBILE FIRST ********************/
+/********** HOMEPAGE CONTENT **********/
