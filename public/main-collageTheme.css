@@ -1,8 +1,9 @@
 html {
   background-color: #000000;
   background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
-  color: #f1eaea;
+
   font-family: "Space Grotesk", sans-serif;
+  color: #161616;
 }
 
 body {
@@ -15,7 +16,7 @@ main {
 
 a {
   text-decoration: none;
-  color: #f1eaea;
+  color: #161616;
 }
 
 a:hover {
@@ -25,7 +26,14 @@ a:hover {
 /******************** MOBILE FIRST ********************/
 /********** HEADER CONTENT **********/
 header {
-  margin: 20px;
+  padding: 20px 20px 0px;
+
+  color: #f1eaea;
+  border-bottom: 10px solid #f1eaea;
+}
+
+header a {
+  color: #f1eaea;
 }
 
 #title {
@@ -49,36 +57,34 @@ header {
 footer {
   width: 100%;
 
+  margin-top: 30px;
+
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: end;
 
-  margin-top: 20px;
-
-  background-color: #f1eaea;
+  color: #f1eaea;
+  border-top: 0.3rem solid #f1eaea;
 }
 
 footer p {
   margin: 0;
 
-  font-size: small;
-  font-family: "Permanent Marker", serif;
-
   display: flex;
   align-items: center;
   gap: 10px;
 
-  color: #202020;
+  font-size: small;
+  font-family: "Permanent Marker", serif;
 }
 
 footer a {
-  color: #202020;
+  color: #f1eaea;
 }
 
 footer span {
   font-size: 1.5rem;
-  color: #202020;
 }
 
 /******************** MOBILE FIRST ********************/
@@ -86,18 +92,19 @@ footer span {
 .stats {
   margin: 30px 8px;
 
-  font-family: "Rock Salt", sans-serif;
-  font-size: 1.5rem;
-
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: left;
 
   overflow: visible;
+
+  font-family: "Rock Salt", "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  color: #f1eaea;
 }
 
-.posted-notes {
+.postIt-notes {
   align-self: center;
 
   display: grid;
@@ -107,38 +114,46 @@ footer span {
   gap: 15px;
 }
 
-.posted-notes div {
+.postIt-notes div {
   height: 200px;
   width: 200px;
 
-  color: #000000;
+  box-shadow: 5px 5px 5px black;
 
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+
+  color: #161616;
 }
 
-.posted-notes div:nth-child(1) {
+.postIt-notes div:nth-child(1) {
+  grid-column: 1 / 2;
+  grid-row: 1 / -1;
+
   background-color: #ff55f9;
 
   transform: rotate(0.01turn);
 }
 
-.posted-notes div:nth-child(2) {
+.postIt-notes div:nth-child(2) {
+  grid-column: 2 / -1;
+  grid-row: 1 / -1;
+
   background-color: #55e5ff;
 
   transform: rotate(-0.005turn);
 }
 
-.posted-notes p {
+.postIt-notes p {
   font-size: 1rem;
   font-weight: bold;
 
   text-decoration: underline double black;
 }
 
-.posted-notes span {
+.postIt-notes span {
   font-size: 4rem;
   font-weight: bolder;
 
