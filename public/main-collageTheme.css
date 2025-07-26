@@ -159,3 +159,45 @@ footer span {
 
   text-decoration: none;
 }
+
+.postIt-tabs {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.postIt-tabs div {
+  width: 150px;
+
+  position: relative;
+
+  font-family: "Rock Salt", "Space Grotesk", sans-serif;
+  font-size: 1rem;
+  align-self: center;
+
+  box-shadow: 3px 3px 5px black;
+}
+
+.postIt-tabs div:nth-child(1) {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  justify-self: start;
+  transform: translate(-8px, 0) rotate(-0.003turn);
+
+  text-align: right;
+
+  background-color: #fcff55;
+}
+
+.postIt-tabs div:nth-child(2) {
+  grid-column: 2 / -1;
+  grid-row: 1 / 2;
+  justify-self: end;
+  transform: translate(8px, -3px) rotate(0.004turn);
+
+  text-align: left;
+
+  background-color: #a7ff55;
+}
