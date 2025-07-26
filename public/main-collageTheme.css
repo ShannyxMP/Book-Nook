@@ -132,18 +132,47 @@ footer span {
   grid-column: 1 / 2;
   grid-row: 1 / -1;
 
-  background-color: #ff55f9;
+  /* background-color: #ff55f9; */
+  background: linear-gradient(#ff55f9, #cb3ac6, #ff55f9);
 
   transform: rotate(0.01turn);
+}
+
+.postIt-notes div:nth-child(1):before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+
+  border-style: solid;
+  border-width: 100px 100px 40px 100px;
+  border-color: transparent rgba(0, 0, 0, 0.25) rgba(79, 13, 77, 0.25)
+    transparent;
 }
 
 .postIt-notes div:nth-child(2) {
   grid-column: 2 / -1;
   grid-row: 1 / -1;
 
-  background-color: #55e5ff;
+  /* background-color: #55e5ff; */
+  background: linear-gradient(#55e5ff, #40bbd1, #2893a5);
 
   transform: rotate(-0.005turn);
+}
+
+.postIt-notes div:nth-child(2):before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+
+  border-style: solid;
+  border-width: 20px 50px 5px 10px;
+  border-color: transparent rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.25) transparent;
 }
 
 .postIt-notes p {
@@ -191,6 +220,20 @@ footer span {
   background-color: #fcff55;
 }
 
+.postIt-tabs div:nth-child(1):hover::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+
+  border-style: solid;
+  border-width: 1rem 0.2rem 1rem 0.5rem;
+  border-color: transparent #9b9d29 #9b9d29 transparent;
+}
+
+
 .postIt-tabs div:nth-child(2) {
   grid-column: 2 / -1;
   grid-row: 1 / 2;
@@ -200,4 +243,17 @@ footer span {
   text-align: left;
 
   background-color: #a7ff55;
+}
+
+.postIt-tabs div:nth-child(2):hover::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+
+  border-style: solid;
+  border-width: 0.8rem 0.8rem 0.4rem 0.8rem;
+  border-color: transparent transparent #78c331 #78c331;
 }
