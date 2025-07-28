@@ -135,7 +135,7 @@ footer span {
   /* background-color: #ff55f9; */
   background: linear-gradient(#ff55f9, #cb3ac6, #ff55f9);
 
-  transform: rotate(0.01turn);
+  transform: rotate(var(--rotation, 0.01turn));
 }
 
 .postIt-notes div:nth-child(1):before {
@@ -159,7 +159,7 @@ footer span {
   /* background-color: #55e5ff; */
   background: linear-gradient(#55e5ff, #40bbd1, #2893a5);
 
-  transform: rotate(-0.005turn);
+  transform: rotate(var(--rotation, -0.005turn));
 }
 
 .postIt-notes div:nth-child(2):before {
@@ -213,7 +213,7 @@ footer span {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   justify-self: start;
-  transform: translate(-8px, 0) rotate(-0.003turn);
+  transform: translate(-8px, 0) rotate(var(--rotation, -0.003turn));
 
   text-align: right;
 
@@ -238,7 +238,7 @@ footer span {
   grid-column: 2 / -1;
   grid-row: 1 / 2;
   justify-self: end;
-  transform: translate(8px, -3px) rotate(0.004turn);
+  transform: translate(8px, -3px) rotate(var(--rotation, 0.004turn));
 
   text-align: left;
 
