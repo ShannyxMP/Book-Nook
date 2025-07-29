@@ -193,8 +193,8 @@ footer span {
   width: 100%;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: minmax(40px, 50px) 1fr;
 }
 
 .postIt-tabs div {
@@ -257,3 +257,19 @@ footer span {
   border-width: 0.8rem 0.8rem 0.4rem 0.8rem;
   border-color: transparent transparent #78c331 #78c331;
 }
+
+.postIt-tabs div:nth-child(3) {
+  grid-column: 1 / -1;
+  grid-row: 2 / -1;
+  justify-self: end;
+
+  font-size: 0.75rem;
+
+  background-color: #bb55ff;
+
+  transform: translate(var(--xPosition, 150px), 0)
+    rotate(var(--rotation, 0.002turn));
+
+  transition: transform 0.5s ease-in-out 0.1s;
+}
+

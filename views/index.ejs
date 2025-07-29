@@ -29,17 +29,22 @@
       </div>
 
       <div class="randomRotation">
-        <form action="/sort" method="POST">
-          <!-- <label for="sortBy">Sort by:</label> -->
-          <span class="material-icons-round">sort</span>
-          <select name="sortBy" id="sortBy" onclick="submitIfOptionChosen(this)">
-            <option value="" disabled selected>Sort</option>
-            <option value="reviews.date_created DESC">Newest</option>
-            <option value="reviews.date_created ASC">Oldest</option>
-            <option value="books.title ASC">Title (A-Z)</option>
-            <option value="books.title DESC">Title (Z-A)</option>
-          </select>
-        </form>
+        <button id="sortToggle">
+          <span class="material-icons-round">sort</span> Sort By
+        </button>
+
+        <form action="/sort" method="POST" id="sortForm">
+          <input type="hidden" name="sortBy" id="sortInput">
+        </form>        
+      </div>
+
+      <div class="randomRotation sortOptions">
+        <ul>
+          <li data-value="reviews.date_created DESC">Newest</li>
+          <li data-value="reviews.date_created ASC">Oldest</li>
+          <li data-value="books.title ASC">Title (A-Z)</li>
+          <li data-value="books.title DESC">Title (Z-A)</li>
+        </ul>
       </div>
     </div>
 

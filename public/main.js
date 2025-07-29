@@ -8,3 +8,21 @@ document.querySelectorAll(".randomRotation").forEach((element) => {
   let rotateDegrees = Math.random() * 0.02 - 0.01;
   element.style.setProperty("--rotation", `${rotateDegrees}turn`);
 });
+
+const sortToggle = document.querySelector("#sortToggle");
+const sortOptions = document.querySelector(".sortOptions");
+
+document.addEventListener("click", (event) => {
+  let clickedToggle = sortToggle.contains(event.target);
+  let clickedInsideSortOptions = sortOptions.contains(event.target);
+  let isOpen = sortOptions.dataset.open === "true";
+
+  if (clickedToggle) {
+    sortOptions.style.setProperty("--xPosition", isOpen ? `150px` : `15px`);
+    sortOptions.dataset.open = (!isOpen).toString();
+  } else if (!clickedInsideSortOptions) {
+    sortOptions.style.setProperty("--xPosition", `150px`);
+    sortOptions.dataset.open = "false";
+  }
+});
+
