@@ -4,14 +4,23 @@ html {
 
   font-family: "Space Grotesk", sans-serif;
   color: #161616;
+
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 main {
   margin: 0 8px;
+
+  /* background-color: #f1eaea;
+  background-image: url("https://www.transparenttextures.com/patterns/lined-paper.png"); */
+
+  background-color: #f1eaea;
+  background-image: url("https://www.transparenttextures.com/patterns/notebook-dark.png");
 }
 
 a {
@@ -20,7 +29,7 @@ a {
 }
 
 a:hover {
-  color: #8800ff;
+  color: #ff9500;
 }
 
 /******************** MOBILE FIRST ********************/
@@ -195,6 +204,8 @@ footer span {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: minmax(40px, 50px) 1fr;
+
+  margin-bottom: 30px;
 }
 
 .postIt-tabs div {
@@ -218,6 +229,10 @@ footer span {
   text-align: right;
 
   background-color: #fcff55;
+}
+
+.postIt-tabs div:nth-child(1) a:hover {
+  color: #161616;
 }
 
 .postIt-tabs div:nth-child(1):hover::before {
