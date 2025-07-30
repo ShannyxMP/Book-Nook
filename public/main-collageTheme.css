@@ -258,6 +258,18 @@ footer span {
   text-align: left;
 
   background-color: #a7ff55;
+
+  cursor: pointer;
+}
+
+.postIt-tabs div:nth-child(2) button {
+  background-color: transparent;
+  border-style: none;
+
+  font-family: "Rock Salt", "Space Grotesk", sans-serif;
+  font-size: 1rem;
+
+  cursor: pointer;
 }
 
 .postIt-tabs div:nth-child(2):hover::before {
@@ -277,10 +289,11 @@ footer span {
   grid-column: 1 / -1;
   grid-row: 2 / -1;
   justify-self: end;
+  position: relative;
 
   font-size: 0.75rem;
 
-  background-color: #bb55ff;
+  background: linear-gradient(#bb55ff, #953cd0, #bb55ff);
 
   transform: translate(var(--xPosition, 150px), 0)
     rotate(var(--rotation, 0.002turn));
@@ -288,3 +301,22 @@ footer span {
   transition: transform 0.5s ease-in-out 0.1s;
 }
 
+.postIt-tabs div:nth-child(3):before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+
+  border-style: solid;
+  border-width: 5px 0 10px 100px;
+  border-color: transparent rgba(202, 124, 255, 0.5) rgba(79, 13, 77, 0.25)
+    transparent;
+}
+
+.postIt-tabs div:nth-child(3) li:hover {
+  color: #ff9500;
+
+  cursor: pointer;
+}
