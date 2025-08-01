@@ -26,3 +26,9 @@ document.addEventListener("click", (event) => {
   }
 });
 
+document.querySelectorAll(".sortOptions li").forEach((listedItem) => {
+  listedItem.addEventListener("click", () => {
+    document.querySelector("#sortInput").value = listedItem.dataset.value;
+    document.querySelector("#sortForm").submit();
+  });
+});
