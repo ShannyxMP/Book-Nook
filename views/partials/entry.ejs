@@ -1,20 +1,37 @@
-<div class="entry-grid">
-  <img src="<%= entryDetails.book_cover %>" alt="book cover for <%= entryDetails.title %>" />
+<div class="entire-entry-container">
+  <% if (showLineBreak) { %>
+    <hr>
+  <% } %>
+  
+  <div class="polaroid randomRotation">
+    <div class="entry-img-wrapper">
+      <img src="<%= entryDetails.book_cover %>" alt="book cover for <%= entryDetails.title %>" />
+    </div>
 
-  <div class="entry-title">
-    <h3>
-      <a href="<%= entryDetails.ol_link %>" target="_blank" rel="noopener noreferrer"
-        ><%= entryDetails.title %></a
-      >
-    </h3>
-  </div>
+    <% if (showDatePublished) { %>
+    <div class="entry-date">
+      <p>
+        Date Created: 
+        <span> <% const formattedDate = new
+        Date(entryDetails.date_created).toLocaleDateString(); %> <%= formattedDate %>
+        </span>
+      </p>
+    </div>
+    <% } %>
 
-  <div class="entry-author">
-    <p>
-      by <% if (entryDetails.author) { %> <%= entryDetails.author %> <% } else { %>
-      <em>No Author yet. Please update.</em>
-      <% } %>
-    </p>
+    <div class="entry-titleAuthor">
+      <p>
+        <span>
+            <a href="<%= entryDetails.ol_link %>" target="_blank" rel="noopener noreferrer"
+              ><%= entryDetails.title %></a
+            >
+        </span>
+        <br>
+          by <% if (entryDetails.author) { %> <%= entryDetails.author %> <% } else { %>
+            <em>No Author yet. Please update.</em>
+            <% } %>
+      </p>
+    </div>
   </div>
 
   <div class="entry-content-container">
