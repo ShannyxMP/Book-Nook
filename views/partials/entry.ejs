@@ -38,13 +38,19 @@
     <div class="entry-rating">
       <p>
         <% if (entryDetails.rating) { %> 
-          <h2> Rating </h2>
-          <br>
-          <div>
-            <%= entryDetails.rating %> 
-            <hr>
-            5 
-          </div>
+          <% if (showPreview) { %>
+            <h2> Rating </h2>
+            <br>
+            <div>
+              <%= entryDetails.rating %> 
+              <hr>
+              5 
+            </div>
+          <% } else { %>
+              <div>
+              <%= entryDetails.rating %> / 5 
+            </div>
+          <% } %>
         <% } else { %>
           No rating yet. Fill form below. 
         <% } %>
@@ -53,13 +59,16 @@
     <div class="entry-review">
       <p>
         <% if (entryDetails.review) { %> 
+          <% if (showPreview) { %>
           <h2> Review </h2>
           <br>
-          <%#= entryDetails.review %> 
-          <% var preview = (entryDetails.review).substring(0, 257) %>
-          <%= preview %>
-          <br>
-           <a href="/view/<%= entryDetails.review_id %>"><span class="material-icons-round">read_more</span></a>
+            <% var preview = (entryDetails.review).substring(0, 257) %>
+            <%= preview %> ...
+            <br>
+            <a href="/view/<%= entryDetails.review_id %>"><span class="material-icons-round">read_more</span></a>
+          <% } else { %>
+            <%= entryDetails.review %> 
+          <% } %>
         <% } else { %> 
           No review yet. Fill form below. 
         <% } %>
@@ -68,6 +77,9 @@
 
     <% if (showButtons) { %>
     <div class="entry-buttons">
+      <% if (!showPreview) { %>
+      <a href="/"><span class="material-icons-round">home</span></a>
+      <% } %>
       <a href="/edit/<%= entryDetails.review_id %>"><span class="material-icons-round">edit</span></a>
       <form method="POST">
         <a

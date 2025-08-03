@@ -2,13 +2,14 @@
 
 /********** HOMEPAGE LAYOUT **********/
 /*  
-    // Conditionals:
-          showLineBreak: true,
-          showDatePublished: true,
-          showButtons: true, 
-          showForm: false, 
-          showEditForm: false, 
-          showPostForm: false 
+  // Conditionals:
+    showLineBreak: true,
+    showDatePublished: true,
+    showPreview: true, 
+    showButtons: true, 
+    showForm: false, 
+    showEditForm: false, 
+    showPostForm: false 
 */
 
 .homepage-entry-grid {
@@ -95,4 +96,77 @@ hr {
   justify-content: end;
   align-items: center;
   gap: 10px;
+}
+
+/********** VIEWPAGE LAYOUT **********/
+/*  
+  // Conditionals:
+    showLineBreak: false,
+    showDatePublished: true, 
+    showPreview: false, 
+    showButtons: true, 
+    showForm: false, 
+    showEditForm: false,
+    showPostForm: false 
+ */
+
+.view-entryPage {
+  margin-top: 70px;
+}
+
+.view-entryPage:after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transform: translate(-30px, 150px) rotate(0.1turn) scale(150%, 150%);
+
+  background-image: url("assets/images/paperclip.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  width: 25%;
+  height: 25%;
+}
+
+.view-entryPage .entry-content-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 50px auto;
+
+  margin: 0 8px;
+}
+
+.view-entryPage .entry-rating {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: start;
+
+  font-size: 1.8rem;
+  font-family: "Rock Salt", "Space Grotesk", sans-serif;
+}
+
+.view-entryPage .entry-buttons {
+  grid-column: 2 / -1;
+  grid-row: 1 / 2;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: end;
+  align-items: end;
+  gap: 15px;
+}
+
+.view-entryPage .entry-review {
+  grid-column: 1 / -1;
+  grid-row: 2 / -1;
+
+  margin-top: 20px;
+
+  text-align: justify;
 }

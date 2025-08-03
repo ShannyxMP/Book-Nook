@@ -172,6 +172,17 @@ app.post("/post-new-entry", async (req, res) => {
   }
 });
 
+app.get("/view/:postId", async (req, res) => {
+  const entryIndex = req.params.postId;
+
+  await obtainBookReviews();
+
+  const fetchEntry = entries.find((entry) => entry.review_id == entryIndex);
+  console.log("Fetched entry: ", fetchEntry);
+
+  res.render("view-entry.ejs", { entryToView: fetchEntry, year: currentYear });
+});
+
 app.get("/edit/:postId", async (req, res) => {
   const entryIndex = req.params.postId;
 
