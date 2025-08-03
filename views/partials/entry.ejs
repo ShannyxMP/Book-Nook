@@ -35,39 +35,51 @@
   </div>
 
   <div class="entry-content-container">
-    <div class="entry-display-review_rating">
+    <div class="entry-rating">
       <p>
-        <% if (entryDetails.rating) { %> Rating: <%= entryDetails.rating %> / 5 <% } else { %>
-        No rating yet. Fill form below. <% } %>
+        <% if (entryDetails.rating) { %> 
+          <h2> Rating </h2>
+          <br>
+          <div>
+            <%= entryDetails.rating %> 
+            <hr>
+            5 
+          </div>
+        <% } else { %>
+          No rating yet. Fill form below. 
+        <% } %>
       </p>
+    </div>
+    <div class="entry-review">
       <p>
-        <% if (entryDetails.review) { %> Review: <%= entryDetails.review %> <% } else { %> No
-        review yet. Fill form below. <% } %>
+        <% if (entryDetails.review) { %> 
+          <h2> Review </h2>
+          <br>
+          <%#= entryDetails.review %> 
+          <% var preview = (entryDetails.review).substring(0, 257) %>
+          <%= preview %>
+          <br>
+           <a href="/view/<%= entryDetails.review_id %>"><span class="material-icons-round">read_more</span></a>
+        <% } else { %> 
+          No review yet. Fill form below. 
+        <% } %>
       </p>
     </div>
 
-    <div class="entry-tidbits">
-      <% if (showDatePublished) { %>
-      <p>
-        Date Created: <% const formattedDate = new
-        Date(entryDetails.date_created).toLocaleDateString(); %> <%= formattedDate %>
-      </p>
-      <% } %>
-
-      <% if (showButtons) { %>
-      <div class="entry-buttons">
+    <% if (showButtons) { %>
+    <div class="entry-buttons">
       <a href="/edit/<%= entryDetails.review_id %>"><span class="material-icons-round">edit</span></a>
-        <form method="POST">
-          <a
-            href="/delete/<%= entryDetails.review_id %>"
-            onclick="return confirm('Are you sure you want to delete this entry?')"
+      <form method="POST">
+        <a
+          href="/delete/<%= entryDetails.review_id %>"
+          onclick="return confirm('Are you sure you want to delete this entry?')"
           >
           <span class="material-icons-round">delete</span>
           </a
-          >
-        </form>
-      </div>
-      <% } %>
+        >
+      </form>
+    </div>
+    <% } %>
     </div>
 
       <% if (showForm) { %> 

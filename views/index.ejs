@@ -48,18 +48,20 @@
       </div>
     </div>
 
-    <% for (let entry of listOfEntries) { %>
-      <%- include("partials/entry.ejs", { 
-        entryDetails: entry, 
-        // Conditionals:
-        showDatePublished: true, 
-        showButtons: true, 
-        showForm: false, 
-        showEditForm: false, 
-        showPostForm: false 
-      }) %> 
-    <% } %>
-  </div>
+    <div class="homepage-entry-grid">
+      <% for (let entry of listOfEntries) { %>
+        <%- include("partials/entry.ejs", { 
+          entryDetails: entry, 
+          // Conditionals:
+          showLineBreak: true,
+          showDatePublished: true,
+          showButtons: true, 
+          showForm: false, 
+          showEditForm: false, 
+          showPostForm: false 
+        }) %> 
+      <% } %>
+    </div>
 </main>
 
 <%- include("partials/footer.ejs", { yearNow: year }) %>
