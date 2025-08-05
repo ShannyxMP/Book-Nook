@@ -92,57 +92,58 @@
       </form>
     </div>
     <% } %>
-    </div>
 
       <% if (showForm) { %> 
         
         <% if (showEditForm) { %>
-      <form action="/edit-entry/<%= entryDetails.review_id %>" method="POST">
+      <form class="edit-form" action="/edit-entry/<%= entryDetails.review_id %>" method="POST">
         <input type="hidden" name="isbn" value="<%= entryDetails.book_isbn %>" />
+
+        <h2>Update Entry :</h2>
         <% } %>
 
-         <% if (showPostForm) { %>
+          <% if (showPostForm) { %>
       <form action="/post-new-entry" method="POST">
         <!-- NOTE: JSON.stringify(book) was not working and resorted to approach below: -->
         <input type="hidden" name="bookTitle" value="<%= entryDetails.title %>" />
         <input type="hidden" name="bookCover" value="<%= entryDetails.book_cover %>" />
         <input type="hidden" name="bookISBN" value="<%= entryDetails.isbn %>" />
         <input type="hidden" name="bookOLlink" value="<%= entryDetails.ol_link %>" />
-         <% } %>
+          <% } %>
 
         <div class="entry-input-author">
-          <p>Author:</p>
+          <h3>Author:</h3>
           <input
-             type="text"
-             name="author"
-             placeholder="Author"
-             value="<%= entryDetails.author %>"
-             required
+              type="text"
+              name="author"
+              placeholder="Author"
+              value="<%= entryDetails.author %>"
+              required
           />
         </div>
 
         <div class="entry-input-rating">
-           <p>Rating:</p>
-           <% for (let i = 0; i < 6; i++) { %> <input id="<%= i %>" type="radio"
-           name="rating" value="<%= i %>" required <%= entryDetails.rating == i ?
-           "checked" : "" %> />
-           <!-- entryDetails.rating == i ? "checked" : ""  <--  So that the user can see which rating was originally selected  -->
-           <label for="<%= i %>"><%= i %></label>
-           <% } %>
+            <h3>Rating:</h3>
+            <% for (let i = 0; i < 6; i++) { %> <input id="<%= i %>" type="radio"
+            name="rating" value="<%= i %>" required <%= entryDetails.rating == i ?
+            "checked" : "" %> />
+            <!-- entryDetails.rating == i ? "checked" : ""  <--  So that the user can see which rating was originally selected  -->
+            <label for="<%= i %>"><%= i %></label>
+            <% } %>
         </div>
 
         <div class="entry-input-review">
-           <p>Review:</p>
-           <textarea
-             name="review"
-             placeholder="Write your review here..."
-             required
-           >
-   <%= entryDetails.review %></textarea
-           >
+            <h3>Review:</h3>
+            <textarea
+              name="review"
+              placeholder="Write your review here..."
+              required
+              autofocus
+            ><%= entryDetails.review %></textarea
+            >
         </div>
 
-        <div>
+        <div class="cancelSubmit-btn">
           <a href="/">Cancel</a>
           <input type="submit" value="Submit" />
         </div>

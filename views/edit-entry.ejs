@@ -1,16 +1,21 @@
 <%- include("partials/header.ejs") %> 
 
-<% if (entryToEdit) { %>
-    <%- include("partials/entry.ejs", { 
-        entryDetails: entryToEdit, 
-        // Conditionals:
-        showLineBreak: false,
-        showDatePublished: true, 
-        showButtons: false, 
-        showForm: true, 
-        showEditForm: true,
-        showPostForm: false 
-    }) %> 
-<% } %> 
+<!-- <main> -->
+    <div class="edit-entryPage">
+        <% if (entryToEdit) { %>
+            <%- include("partials/entry.ejs", { 
+                entryDetails: entryToEdit, 
+                // Conditionals:
+                showLineBreak: false,
+                showDatePublished: true, 
+                showPreview: false, 
+                showButtons: false, 
+                showForm: true, 
+                showEditForm: true,
+                showPostForm: false 
+            }) %> 
+        <% } %> 
+    </div>
+<!-- </main> -->
 
 <%- include("partials/footer.ejs", { yearNow: year }) %>
