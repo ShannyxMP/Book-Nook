@@ -12,9 +12,15 @@
     <div class="entry-date">
       <p>
         Date Created: 
-        <span> <% const formattedDate = new
-        Date(entryDetails.date_created).toLocaleDateString(); %> <%= formattedDate %>
-        </span>
+        <% if (entryDetails.date_created) { %>
+          <span> <% const formattedDate = new
+          Date(entryDetails.date_created).toLocaleDateString(); %> <%= formattedDate %>
+          </span>
+        <% } else { %>
+          <span class="empty"> 
+            --/--/----
+          </span>
+        <% } %>
       </p>
     </div>
     <% } %>
@@ -27,9 +33,12 @@
             >
         </span>
         <br>
-          by <% if (entryDetails.author) { %> <%= entryDetails.author %> <% } else { %>
-            <em>No Author yet. Please update.</em>
-            <% } %>
+          by 
+          <% if (entryDetails.author) { %> 
+            <%= entryDetails.author %> 
+          <% } else { %>
+            <span class="empty"><em>No Author yet. Please update.</em></span>
+          <% } %>
       </p>
     </div>
   </div>
@@ -47,12 +56,14 @@
               5 
             </div>
           <% } else { %>
-              <div>
+            <div>
               <%= entryDetails.rating %> / 5 
             </div>
           <% } %>
         <% } else { %>
-          No rating yet. Fill form below. 
+            <div>
+              <span class="empty">No rating yet. Fill form below.</span>
+            </div>
         <% } %>
       </p>
     </div>
@@ -70,7 +81,7 @@
             <%= entryDetails.review %> 
           <% } %>
         <% } else { %> 
-          No review yet. Fill form below. 
+          <span class="empty">No review yet. Fill form below.</span> 
         <% } %>
       </p>
     </div>
@@ -96,7 +107,7 @@
       <% if (showForm) { %> 
         
         <% if (showEditForm) { %>
-      <form class="edit-form" action="/edit-entry/<%= entryDetails.review_id %>" method="POST">
+      <form action="/edit-entry/<%= entryDetails.review_id %>" method="POST">
         <input type="hidden" name="isbn" value="<%= entryDetails.book_isbn %>" />
 
         <h2>Update Entry :</h2>

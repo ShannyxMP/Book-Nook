@@ -1,11 +1,4 @@
 /********** FORM LAYOUT **********/
-/* Shared between add-entry and edit-entry page */
-h2,
-h3 {
-  font-family: "Rock Salt", "Space Grotesk", sans-serif;
-  color: white;
-}
-
 input,
 textarea {
   padding: 5px 15px;
@@ -30,24 +23,15 @@ textarea {
     showPostForm: false 
 */
 
-/* .edit-entryPage:after {
-  content: "";
+.addEdit-entryPage h2,
+h3 {
+  font-family: "Rock Salt", "Space Grotesk", sans-serif;
+  color: white;
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  transform: translate(-30px, 150px) rotate(0.1turn) scale(150%, 150%);
+  margin-left: 15px;
+}
 
-  background-image: url("assets/images/paperclip.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  width: 25%;
-  height: 25%;
-} */
-
-.edit-entryPage .entry-content-container {
+.addEdit-entryPage .entry-content-container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50px auto;
@@ -58,7 +42,7 @@ textarea {
   color: white;
 }
 
-.edit-entryPage .entry-rating {
+.addEdit-entryPage .entry-rating {
   grid-column: 1 / -1;
   grid-row: 1 / 2;
 
@@ -70,39 +54,41 @@ textarea {
   font-family: "Rock Salt", "Space Grotesk", sans-serif;
 }
 
-.edit-entryPage .entry-review {
+
+.addEdit-entryPage .entry-review {
   grid-column: 1 / -1;
   grid-row: 2 / 3;
 
   margin-top: 20px;
-  padding: 30px 8px;
+  padding: 30px 15px;
 
   background-color: #f1eaea;
   background-image: url("https://www.transparenttextures.com/patterns/notebook-dark.png");
   border-top: 17px dotted rgb(18 18 18);
   border-radius: 5px;
+  box-shadow: 3px 3px 5px black;
 
   color: #161616;
 }
 
-.edit-entryPage .edit-form {
+.addEdit-entryPage form {
   grid-column: 1 / -1;
   grid-row: 3 / -1;
 
   margin-top: 20px;
 }
 
-.edit-entryPage .edit-form div {
-  margin-left: 15px;
+.addEdit-entryPage form div {
+  margin-left: 8px;
 }
 
-.edit-entryPage .edit-form textarea {
+.addEdit-entryPage form textarea {
   width: clamp(80%, 88%, 100%);
   min-height: min(250px);
   resize: vertical;
 }
 
-.edit-entryPage .edit-form .cancelSubmit-btn {
+.addEdit-entryPage form .cancelSubmit-btn {
   display: flex;
   justify-content: end;
   align-items: center;
@@ -113,10 +99,52 @@ textarea {
   gap: 25px;
 }
 
-.edit-entryPage .edit-form .cancelSubmit-btn input:hover {
+.addEdit-entryPage form .cancelSubmit-btn input:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.edit-entryPage .entry-content-container a {
+.addEdit-entryPage .entry-content-container a {
+  color: white;
+}
+
+.addEdit-entryPage .empty {
+  font-size: 0.62rem;
+  color: #7c7c7c;
+  font-weight: 800;
+}
+
+/********** ADD-PAGE LAYOUT **********/
+/*
+  // Conditionals:
+    showLineBreak: false,
+    showDatePublished: true, 
+    showPreview: false,
+    showButtons: false, 
+    showForm: true,
+    showEditForm: false, 
+    showPostForm: true  
+*/
+/* NOTE: Can probably just join the wrapping div class to the CSS above??? */
+
+.isbn-form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: end;
+
+  margin-right: 8px;
+}
+
+.isbn-form div {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  margin-top: 15px;
+
+  gap: 25px;
+}
+
+.isbn-form a {
   color: white;
 }

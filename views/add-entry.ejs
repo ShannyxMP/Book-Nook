@@ -1,6 +1,6 @@
 <%- include("partials/header.ejs") %>
 
-<form action="/fetch-new-entry" method="POST">
+<form class="isbn-form" action="/fetch-new-entry" method="POST">
   <p>ISBN 10 / 13 (relevant information will be auto-populated for you):</p>
 
   <input
@@ -19,19 +19,21 @@
   </div>
 </form>
 
-<p>Preview pane:</p>
+<div class="addEdit-entryPage">
+  <h2>Preview pane:</h2>
 
-<% if (entryToAdd) { %> 
-  <%- include("partials/entry.ejs", { 
-    entryDetails: entryToAdd, 
-    // Conditionals:
-    showLineBreak: false,
-    showDatePublished: true, 
-    showButtons: false, 
-    showForm: true,
-    showEditForm: false, 
-    showPostForm: true 
-  }) %> 
-<% } %>
-
+  <% if (entryToAdd) { %> 
+    <%- include("partials/entry.ejs", { 
+      entryDetails: entryToAdd, 
+      // Conditionals:
+      showLineBreak: false,
+      showDatePublished: true, 
+      showPreview: false,
+      showButtons: false, 
+      showForm: true,
+      showEditForm: false, 
+      showPostForm: true 
+    }) %> 
+  <% } %>
+</div>
 <%- include("partials/footer.ejs", { yearNow: year }) %>
