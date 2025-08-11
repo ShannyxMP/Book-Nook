@@ -52,6 +52,22 @@ header a {
   font-size: 3rem;
 }
 
+#title:after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-5px, 60px) rotate(0.008turn);
+
+  background-image: url("assets/images/AS(2).png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  width: 25%;
+  height: 25%;
+}
+
 #title span {
   font-size: 3rem;
 }
@@ -75,6 +91,23 @@ footer {
 
   color: #f1eaea;
   border-top: 0.3rem solid #f1eaea;
+
+}
+
+footer:before {
+  content: "";
+  height: 100px;
+  width: 100px;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* z-index: -1; */
+  transform: translate(5px, -35px) rotate(-0.005turn);
+
+  background-image: url("assets/images/AS(1).png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 footer p {
@@ -246,6 +279,23 @@ footer span {
   border-style: solid;
   border-width: 1rem 0.2rem 1rem 0.5rem;
   border-color: transparent #9b9d29 #9b9d29 transparent;
+}
+
+.postIt-tabs div:nth-child(1):after {
+  content: "current entries below.. ";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(-5px, 210px);
+
+  background-image: url("assets/images/book.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  width: 320px;
+  height: 125px;
+
+  text-align: right;
 }
 
 
