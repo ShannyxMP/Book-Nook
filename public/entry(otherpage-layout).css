@@ -148,3 +148,16 @@ h3 {
 .isbn-form a {
   color: white;
 }
+
+.gif-container {
+  width: 100%;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.gif-container img {
+  height: 300px;
+}

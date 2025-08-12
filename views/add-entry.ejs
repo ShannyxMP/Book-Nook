@@ -34,6 +34,12 @@
       showEditForm: false, 
       showPostForm: true 
     }) %> 
+  <% } else { %>
+    <div class="empty gif-container">
+      <p>nothing here...</p>
+      
+      <img src="assets/images/nothing-here.gif" alt="nothing here gif">
+    </div>
   <% } %>
 </div>
 <%- include("partials/footer.ejs", { yearNow: year }) %>
