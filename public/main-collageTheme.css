@@ -16,11 +16,9 @@ body {
 main {
   margin: 0 8px;
 
-  /* background-color: #f1eaea;
-  background-image: url("https://www.transparenttextures.com/patterns/lined-paper.png"); */
-
   background-color: #f1eaea;
   background-image: url("https://www.transparenttextures.com/patterns/notebook-dark.png");
+  box-shadow: 3px 3px 2px black;
 }
 
 a {
@@ -36,6 +34,7 @@ a:hover {
 /********** HEADER CONTENT **********/
 header {
   padding: 20px 20px 0px;
+  margin-bottom: 30px;
 
   color: #f1eaea;
   border-bottom: 10px solid #f1eaea;
@@ -82,7 +81,7 @@ header a {
 footer {
   width: 100%;
 
-  margin-top: 30px;
+  margin-top: 120px;
 
   display: flex;
   flex-flow: row nowrap;
@@ -92,6 +91,7 @@ footer {
   color: #f1eaea;
   border-top: 0.3rem solid #f1eaea;
 
+  position: relative;
 }
 
 footer:before {
@@ -102,7 +102,7 @@ footer:before {
   position: absolute;
   bottom: 0;
   left: 0;
-  /* z-index: -1; */
+
   transform: translate(5px, -35px) rotate(-0.005turn);
 
   background-image: url("assets/images/AS(1).png");
@@ -132,12 +132,11 @@ footer span {
 /******************** MOBILE FIRST ********************/
 /********** HOMEPAGE CONTENT **********/
 .stats {
-  margin: 30px 8px;
+  margin: 0 8px;
 
   display: flex;
   flex-flow: column;
   justify-content: center;
-  align-items: left;
 
   overflow: visible;
 
@@ -238,7 +237,7 @@ footer span {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: minmax(40px, 50px) 1fr;
 
-  margin-bottom: 30px;
+  margin: 70px 0;
 }
 
 .postIt-tabs div {

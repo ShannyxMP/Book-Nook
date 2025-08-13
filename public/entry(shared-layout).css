@@ -4,8 +4,6 @@
   height: 450px;
   border-radius: 5px;
 
-  /* justify-self: center; */
-
   display: grid;
   grid-template-rows: 24px 1fr 90px;
   grid-template-columns: 1fr;
@@ -65,13 +63,11 @@
   text-align: center;
   font-size: clamp(0.62rem, 0.8rem, 1rem);
 
-  padding: 0 5px;
-
   background-color: rgba(0, 0, 0, 0.001);
 }
 
 .entry-titleAuthor span {
-  font-size: clamp(0.62rem, 0.9rem, 1.62rem);
+  font-size: clamp(0.8rem, 1rem, 1.62rem);
   font-weight: 700;
 }
 
@@ -89,6 +85,7 @@
 /* MEDIUM DEVICES AND ABOVE */
 @media only screen and (min-width: 600px) {
   .entire-entry-container {
+    /* TODO: change to grid */
     flex-flow: row nowrap;
   }
 }

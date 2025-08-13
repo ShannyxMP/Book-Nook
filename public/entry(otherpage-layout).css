@@ -32,6 +32,7 @@ h3 {
 }
 
 .addEdit-entryPage .entry-content-container {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50px auto;
@@ -50,10 +51,15 @@ h3 {
   justify-content: start;
   align-items: end;
 
+  margin-left: 15px;
+
   font-size: 1.8rem;
   font-family: "Rock Salt", "Space Grotesk", sans-serif;
 }
 
+.addEdit-entryPage .entry-rating p {
+  margin: 0;
+}
 
 .addEdit-entryPage .entry-review {
   grid-column: 1 / -1;
@@ -124,7 +130,7 @@ h3 {
     showEditForm: false, 
     showPostForm: true  
 */
-/* NOTE: Can probably just join the wrapping div class to the CSS above??? */
+/* NOTE: add-page layout and designed was adjoined to edit-page CSS above */
 
 .isbn-form {
   display: flex;
