@@ -1,9 +1,10 @@
+<% if (showLineBreak) { %>
+  <div class="lineBreak-wrapper">
+    <hr>
+  </div>
+<% } %>
+
 <div class="entire-entry-container">
-  <% if (showLineBreak) { %>
-    <div class="lineBreak-wrapper">
-      <hr>
-    </div>
-  <% } %>
   
   <div class="polaroid randomRotation">
     <div class="entry-img-wrapper">
@@ -156,8 +157,12 @@
             >
         </div>
 
-        <div class="cancelSubmit-btn">
-          <a href="/">Cancel</a>
+        <div class="cancelSubmit-btn"> 
+          <% if (showPostForm) { %>
+            <a href="/add-entry">Cancel</a>
+          <% } else { %>
+            <a href="/">Cancel</a>
+          <% } %>
           <input type="submit" value="Submit" />
         </div>
       </form>

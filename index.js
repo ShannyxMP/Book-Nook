@@ -54,7 +54,7 @@ async function obtainBookReviews() {
     );
 
     if (result.rows.length > 0) {
-      console.log("Results: ", result.rows);
+      // console.log("Results: ", result.rows);
       entries = []; // To ensure there are no double-ups
       result.rows.forEach((entry) => {
         entries.push(entry);
@@ -78,8 +78,8 @@ app.get("/", async (req, res) => {
     const result = await db.query(
       `SELECT * FROM books JOIN reviews ON books.isbn = reviews.book_isbn WHERE date_created >= '${currentYear}-01-01'`
     );
-    console.log("Total Books: ", entries.length);
-    console.log("Books this Year: ", result.rows.length);
+    // console.log("Total Books: ", entries.length);
+    // console.log("Books this Year: ", result.rows.length);
 
     booksReadTotal = entries.length;
     booksReadThisYear = result.rows.length;
@@ -96,7 +96,7 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/sort", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   sorting = req.body.sortBy;
   res.redirect("/");
 });
@@ -110,7 +110,7 @@ app.post("/fetch-new-entry", async (req, res) => {
 
   isbn = isbn.replaceAll("-", ""); // Removes all hyphens
   const isValidISBN = /^[0-9]{10}([0-9]{3})?$/.test(isbn);
-  console.log(`ISBN: ${isbn}, Is it a valid input? ${isValidISBN}`);
+  // console.log(`ISBN: ${isbn}, Is it a valid input? ${isValidISBN}`);
 
   if (isValidISBN) {
     try {
@@ -152,7 +152,7 @@ app.post("/post-new-entry", async (req, res) => {
     review,
   } = req.body;
 
-  console.log({ title, author, book_cover, isbn, ol_link, rating, review });
+  // console.log({ title, author, book_cover, isbn, ol_link, rating, review });
 
   try {
     const bookResult = await db.query(
@@ -163,7 +163,7 @@ app.post("/post-new-entry", async (req, res) => {
       "INSERT INTO reviews (rating, review, book_isbn) VALUES ($1, $2, $3) RETURNING *",
       [rating, review, isbn]
     );
-    console.log(bookResult, reviewResult);
+    // console.log(bookResult, reviewResult);
 
     res.redirect("/");
   } catch (error) {
@@ -204,7 +204,7 @@ app.post("/edit-entry/:postId", async (req, res) => {
     isbn,
   } = req.body;
 
-  console.log(updateAuthor, isbn);
+  // console.log(updateAuthor, isbn);
 
   try {
     await db.query(
