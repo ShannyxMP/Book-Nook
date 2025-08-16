@@ -118,6 +118,88 @@ hr {
   gap: 10px;
 }
 
+@media only screen and (min-width: 600px) {
+  .homepage-entry-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+  }
+
+  .homepage-entry-grid .entire-entry-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 120px 2fr;
+    grid-auto-rows: 120px 2fr;
+
+    margin: 0;
+  }
+
+  .homepage-entry-grid .entire-entry-container .polaroid {
+    justify-self: center;
+  }
+
+  .homepage-entry-grid .lineBreak-wrapper {
+    width: 100%;
+
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+  }
+
+  .homepage-entry-grid .entry-content-container {
+    grid-column: 2 / -1;
+    grid-row: 2 / -1;
+
+    display: grid;
+    grid-template-columns: 1fr 90px;
+    grid-template-rows: auto auto;
+    gap: 10px;
+  }
+
+  .homepage-entry-grid .entry-content-container h2 {
+    margin-left: 15px;
+  }
+
+  .homepage-entry-grid .entry-content-container .entry-rating,
+  .entry-review,
+  .entry-buttons {
+    width: auto;
+    height: 100%;
+
+    border: 2px dashed grey;
+    border-radius: 10px;
+  }
+
+  .homepage-entry-grid .entry-content-container .entry-review {
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+
+    width: 100%;
+
+    order: -1;
+
+    padding: 0 8px;
+  }
+
+  /* FIXME: content boxes are not aligning <- ?intertwining CSS */
+
+  .homepage-entry-grid .entry-content-container .entry-rating {
+    grid-column: 2 / -1;
+    grid-row: 1 / 2;
+
+    width: 100%;
+
+    align-self: end;
+  }
+
+  .homepage-entry-grid .entry-content-container .entry-buttons {
+    grid-column: 2 / -1;
+    grid-row: 2 / -1;
+
+    display: flex;
+    justify-content: center;
+  }
+}
+
 /********** VIEWPAGE LAYOUT **********/
 /*  
   // Conditionals:

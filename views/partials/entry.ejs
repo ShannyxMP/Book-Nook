@@ -1,11 +1,10 @@
-<% if (showLineBreak) { %>
-  <div class="lineBreak-wrapper">
-    <hr>
-  </div>
-<% } %>
-
 <div class="entire-entry-container">
-  
+  <% if (showLineBreak) { %>
+    <div class="lineBreak-wrapper">
+      <hr>
+    </div>
+  <% } %>
+
   <div class="polaroid randomRotation">
     <div class="entry-img-wrapper">
       <img src="<%= entryDetails.book_cover %>" alt="book cover for <%= entryDetails.title %>" />
