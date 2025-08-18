@@ -17,10 +17,16 @@
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  grid-auto-rows: 1fr;
+  grid-template-rows: auto;
+  grid-auto-rows: auto;
 
   justify-items: center;
+  align-items: center;
+}
+
+.homepage-entry-grid .entire-entry-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -120,6 +126,8 @@ hr {
 
 @media only screen and (min-width: 600px) {
   .homepage-entry-grid {
+    width: 100%;
+
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-auto-rows: auto;
@@ -127,11 +135,11 @@ hr {
 
   .homepage-entry-grid .entire-entry-container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 0.8fr 2fr;
     grid-template-rows: 120px 2fr;
     grid-auto-rows: 120px 2fr;
 
-    margin: 0;
+    margin: 0 8px;
   }
 
   .homepage-entry-grid .entire-entry-container .polaroid {
@@ -146,53 +154,55 @@ hr {
   }
 
   .homepage-entry-grid .entry-content-container {
+    width: 93%;
+
     grid-column: 2 / -1;
     grid-row: 2 / -1;
 
     display: grid;
-    grid-template-columns: 1fr 90px;
+    grid-template-columns: 0.1fr 1fr;
     grid-template-rows: auto auto;
     gap: 10px;
-  }
-
-  .homepage-entry-grid .entry-content-container h2 {
-    margin-left: 15px;
   }
 
   .homepage-entry-grid .entry-content-container .entry-rating,
   .entry-review,
   .entry-buttons {
-    width: auto;
-    height: 100%;
-
     border: 2px dashed grey;
     border-radius: 10px;
   }
 
   .homepage-entry-grid .entry-content-container .entry-review {
-    grid-column: 1 / 2;
-    grid-row: 1 / -1;
+    height: 100%;
 
-    width: 100%;
+    grid-column: 2 / -1;
+    grid-row: 1 / -1;
+    justify-self: start;
 
     order: -1;
 
     padding: 0 8px;
   }
 
-  /* FIXME: content boxes are not aligning <- ?intertwining CSS */
+  /* [x]: content boxes are not aligning <- ?intertwining CSS */
 
   .homepage-entry-grid .entry-content-container .entry-rating {
-    grid-column: 2 / -1;
-    grid-row: 1 / 2;
-
     width: 100%;
+
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
 
     align-self: end;
   }
 
+  .homepage-entry-grid .entry-content-container h2 {
+    margin: 0 15px;
+  }
+
   .homepage-entry-grid .entry-content-container .entry-buttons {
-    grid-column: 2 / -1;
+    height: 100%;
+
+    grid-column: 1 / 2;
     grid-row: 2 / -1;
 
     display: flex;
