@@ -1,6 +1,6 @@
 /********** POLAROID LAYOUT **********/
 .polaroid {
-  width: 280px;
+  width: clamp(280px, 280px, 315px);
   height: 450px;
   border-radius: 5px;
 
