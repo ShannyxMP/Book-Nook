@@ -85,7 +85,10 @@
 /* MEDIUM DEVICES AND ABOVE */
 @media only screen and (min-width: 600px) {
   .entire-entry-container {
-    /* TODO: change to grid */
-    flex-flow: row nowrap;
+    display: grid;
+    grid-template-columns: 0.8fr 2fr;
+    grid-template-rows: 120px 2fr;
+
+    margin: 0 8px;
   }
 }

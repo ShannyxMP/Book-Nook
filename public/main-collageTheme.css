@@ -76,6 +76,17 @@ header a {
   align-items: center;
 }
 
+/******************** LARGER VIEWPORTS ********************/
+@media only screen and (min-width: 600px) {
+  #title:after {
+    transform: translate(-5px, 0) rotate(0.008turn);
+    z-index: 1;
+
+    width: 20%;
+    height: 20%;
+  }
+}
+
 /******************** MOBILE FIRST ********************/
 /********** FOOTER CONTENT **********/
 footer {

@@ -299,3 +299,55 @@ hr {
 
   text-align: justify;
 }
+
+@media only screen and (min-width: 600px) {
+  .view-entryPage .polaroid {
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+  }
+
+  .view-entryPage .entry-content-container {
+    grid-column: 2 / -1;
+    grid-row: 1 / -1;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 60px auto;
+    gap: 15px;
+
+    margin: 0 16px 0 8px;
+  }
+
+  .view-entryPage .entry-rating {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .view-entryPage .entry-buttons {
+    width: 130px;
+    height: 40px;
+
+    justify-self: end;
+    align-self: end;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .view-entryPage .entry-review {
+    grid-column: 1 / -1;
+    grid-row: 2 / -1;
+
+    text-align: justify;
+
+    margin: 0;
+  }
+
+  .view-entryPage:after {
+    transform: translate(-50px, 140px) rotate(0.1turn) scale(75%, 75%);
+  }
+}
