@@ -162,10 +162,6 @@
 
 .postIt-tabs div:nth-child(1):after {
   content: "current entries below.. ";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translate(-5px, 210px);
 
   background-image: url("assets/images/book.png");
   background-size: contain;
@@ -173,6 +169,11 @@
 
   width: 320px;
   height: 125px;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(-5px, 210px);
 
   text-align: right;
 }
@@ -277,12 +278,12 @@ hr {
 
 .lineBreak-wrapper::before {
   content: "";
+  width: 100%;
 
   position: absolute;
   top: 0;
   left: 0;
 
-  width: 100%;
   border-top: 12px solid rgb(18 18 18);
   transform: translate(0, 20px);
   pointer-events: none;
@@ -454,16 +455,18 @@ hr {
 .view-entryPage {
   margin-top: 70px;
   padding: 60px 0;
+
+  position: relative;
 }
 
 .view-entryPage:before {
   content: "";
   width: 100%;
+
   position: absolute;
   top: 0;
   left: 0;
-
-  transform: translate(0, 165px);
+  transform: translate(0, -5px);
 
   border-top: 17px dotted rgb(18 18 18);
 }
@@ -471,18 +474,19 @@ hr {
 .view-entryPage:after {
   content: "";
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  transform: translate(-30px, 200px) rotate(0.1turn) scale(150%, 150%);
-
   background-image: url("assets/images/paperclip.png");
   background-size: contain;
   background-repeat: no-repeat;
 
-  width: 25%;
-  height: 25%;
+  width: 500px;
+  height: 500px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transform: translate(35px, -80px) rotate(0.1turn) scale(0.4);
+  transform-origin: top left;
 }
 
 .view-entryPage .polaroid {
@@ -536,6 +540,8 @@ hr {
   .view-entryPage .polaroid {
     grid-column: 1 / 2;
     grid-row: 1 / -1;
+
+    justify-self: start;
   }
 
   .view-entryPage .entry-content-container {
@@ -543,7 +549,7 @@ hr {
     grid-row: 1 / -1;
 
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1.5fr 3fr;
     grid-template-rows: 60px auto;
     gap: 15px;
 
@@ -577,9 +583,5 @@ hr {
     text-align: justify;
 
     margin: 0;
-  }
-
-  .view-entryPage:after {
-    transform: translate(-50px, 140px) rotate(0.1turn) scale(75%, 75%);
   }
 }
