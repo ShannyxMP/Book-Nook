@@ -1,4 +1,8 @@
 /********** FORM LAYOUT **********/
+* {
+  box-sizing: border-box;
+}
+
 input,
 textarea {
   padding: 5px 16px;
@@ -11,6 +15,13 @@ textarea {
   color: white;
 
   text-align: justify;
+}
+
+textarea {
+  width: 100%;
+  min-height: min(250px);
+  box-sizing: border-box;
+  resize: vertical;
 }
 
 /********** EDIT-PAGE LAYOUT **********/
@@ -33,14 +44,20 @@ h3 {
   margin-left: 15px;
 }
 
+.addEdit-entryPage .entire-entry-container {
+  margin-top: 150px;
+}
+
 .addEdit-entryPage .entry-content-container {
   width: 100%;
+
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50px auto;
   grid-auto-rows: auto;
 
-  margin: 20px 8px 0;
+  margin-top: 20px;
+  padding: 0 8px;
 
   color: white;
 }
@@ -52,8 +69,6 @@ h3 {
   display: flex;
   justify-content: start;
   align-items: end;
-
-  margin-left: 15px;
 
   font-size: 1.8rem;
   font-family: "Rock Salt", "Space Grotesk", sans-serif;
@@ -83,17 +98,7 @@ h3 {
   grid-column: 1 / -1;
   grid-row: 3 / -1;
 
-  margin-top: 20px;
-}
-
-.addEdit-entryPage form div {
-  margin-left: 8px;
-}
-
-.addEdit-entryPage form textarea {
-  width: clamp(80%, 88%, 100%);
-  min-height: min(250px);
-  resize: vertical;
+  /* margin: 20px 8px; */
 }
 
 .addEdit-entryPage form .cancelSubmit-btn {
@@ -102,7 +107,6 @@ h3 {
   align-items: center;
 
   margin-top: 15px;
-  margin-right: 15px;
 
   gap: 25px;
 }
@@ -119,6 +123,21 @@ h3 {
   font-size: 0.62rem;
   color: #7c7c7c;
   font-weight: 800;
+}
+
+/* MEDIUM DEVICES AND ABOVE */
+@media only screen and (min-width: 600px) {
+  .addEdit-entryPage .entire-entry-container {
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .addEdit-entryPage .entry-content-container {
+    padding: 0 40px;
+  }
 }
 
 /********** ADD-PAGE LAYOUT **********/
@@ -168,4 +187,13 @@ h3 {
 
 .gif-container img {
   height: 300px;
+}
+
+/* MEDIUM DEVICES AND ABOVE */
+@media only screen and (min-width: 600px) {
+  .isbn-form {
+    align-items: end;
+
+    margin-right: 40px;
+  }
 }
