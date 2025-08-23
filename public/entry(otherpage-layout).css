@@ -1,8 +1,4 @@
 /********** FORM LAYOUT **********/
-* {
-  box-sizing: border-box;
-}
-
 input,
 textarea {
   padding: 5px 16px;
@@ -44,8 +40,12 @@ h3 {
   margin-left: 15px;
 }
 
+.addEdit-entryPage .polaroid {
+  z-index: 1;
+}
+
 .addEdit-entryPage .entire-entry-container {
-  margin-top: 150px;
+  margin-top: 80px;
 }
 
 .addEdit-entryPage .entry-content-container {

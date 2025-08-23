@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   /* height: 100%; */
 
@@ -90,10 +94,6 @@ header a {
   align-items: center;
 }
 
-/******************** LARGER VIEWPORTS ********************/
-/* @media only screen and (min-width: 600px) {
-} */
-
 /******************** MOBILE FIRST ********************/
 /********** FOOTER CONTENT **********/
 footer {
@@ -109,8 +109,8 @@ footer {
   color: #f1eaea;
   border-top: 0.3rem solid #f1eaea;
 
-  position: relative;
-  bottom: 0;
+  transform: translate(0, 0);
+  transform-origin: bottom left;
 }
 
 footer:before {
@@ -147,4 +147,12 @@ footer a {
 
 footer span {
   font-size: 1.5rem;
+}
+
+/* MEDIUM DEVICES AND ABOVE */
+@media only screen and (min-width: 600px) {
+  #title span,
+  #title a {
+    font-size: 4rem;
+  }
 }

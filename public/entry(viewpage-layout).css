@@ -290,7 +290,7 @@ hr {
 }
 
 .homepage-entry-grid .entry-content-container {
-  margin: 0 8px;
+  padding: 0 8px;
 
   display: grid;
   grid-template-columns: 0.5fr 2fr;
@@ -366,6 +366,8 @@ hr {
   }
 
   .homepage-entry-grid .entire-entry-container {
+    width: 100%;
+
     display: grid;
     grid-template-columns: 0.8fr 2fr;
     grid-template-rows: 120px 2fr;
@@ -386,7 +388,7 @@ hr {
   }
 
   .homepage-entry-grid .entry-content-container {
-    width: 93%;
+    width: 100%;
 
     grid-column: 2 / -1;
     grid-row: 2 / -1;
@@ -395,6 +397,8 @@ hr {
     grid-template-columns: 0.1fr 1fr;
     grid-template-rows: auto auto;
     gap: 10px;
+
+    padding-right: 70px;
   }
 
   .homepage-entry-grid .entry-content-container .entry-rating,
@@ -406,6 +410,7 @@ hr {
 
   .homepage-entry-grid .entry-content-container .entry-review {
     height: 100%;
+    width: 100%;
 
     grid-column: 2 / -1;
     grid-row: 1 / -1;
@@ -498,8 +503,6 @@ hr {
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 50px auto;
   gap: 15px;
-
-  margin: 0 8px;
 }
 
 .view-entryPage .entry-rating {
@@ -537,6 +540,10 @@ hr {
 }
 
 @media only screen and (min-width: 600px) {
+  .view-entryPage {
+    padding: 60px 104px 60px 0;
+  }
+
   .view-entryPage .polaroid {
     grid-column: 1 / 2;
     grid-row: 1 / -1;
@@ -552,14 +559,14 @@ hr {
     grid-template-columns: 1.5fr 3fr;
     grid-template-rows: 60px auto;
     gap: 15px;
-
-    margin: 0 16px 0 8px;
   }
 
   .view-entryPage .entry-rating {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
+
+    margin-left: 12px;
   }
 
   .view-entryPage .entry-buttons {
@@ -581,7 +588,5 @@ hr {
     grid-row: 2 / -1;
 
     text-align: justify;
-
-    margin: 0;
   }
 }
