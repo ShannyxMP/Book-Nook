@@ -72,6 +72,11 @@
 }
 
 /********** ENTIRE ENTRY LAYOUT **********/
+.entry-review p {
+  line-height: 1.5;
+  margin: 0;
+}
+
 /* SMALL DEVICES LAYOUT */
 .entire-entry-container {
   width: 100%;

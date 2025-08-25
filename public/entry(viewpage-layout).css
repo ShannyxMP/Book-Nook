@@ -308,7 +308,7 @@ hr {
   letter-spacing: 2px;
   text-decoration: underline double black;
 
-  margin: 0;
+  margin: 20px 0;
 }
 
 .homepage-entry-grid .entry-rating {
@@ -337,6 +337,10 @@ hr {
   grid-row: 1 / 2;
 
   text-align: justify;
+}
+
+.homepage-entry-grid .entry-content-container .entry-review h2 {
+  margin-top: 20px;
 }
 
 .homepage-entry-grid .entry-review span {
@@ -432,6 +436,10 @@ hr {
 
   .homepage-entry-grid .entry-content-container h2 {
     margin: 0 15px;
+  }
+
+  .homepage-entry-grid .entry-content-container .entry-review h2 {
+    margin-top: 16px;
   }
 
   .homepage-entry-grid .entry-content-container .entry-buttons {
@@ -533,9 +541,8 @@ hr {
   grid-row: 2 / -1;
 
   text-align: justify;
-}
+  white-space: pre-line;
 
-.view-entryPage .entry-review p {
   padding: 0 16px;
 }
 
@@ -549,6 +556,7 @@ hr {
     grid-row: 1 / -1;
 
     justify-self: start;
+    align-self: start;
   }
 
   .view-entryPage .entry-content-container {
