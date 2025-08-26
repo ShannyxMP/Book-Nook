@@ -75,8 +75,8 @@
           <% if (showPreview) { %>
           <h2> Review </h2>
           <br>
-            <% var preview = (entryDetails.review).substring(0, 257) %>
-            <%= preview %> ...
+            <% var preview = (entryDetails.review).substring(0, 300) %>
+            <%= preview %>...
             <br>
             <a href="/view/<%= entryDetails.review_id %>"><span class="material-icons-round">read_more</span></a>
           <% } else { %>

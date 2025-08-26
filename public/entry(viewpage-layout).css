@@ -313,7 +313,7 @@ hr {
 
 .homepage-entry-grid .entry-rating {
   grid-column: 1 / 2;
-  grid-row: 1 / -1;
+  grid-row: 1 / 2;
 }
 
 .homepage-entry-grid .entry-rating div {
@@ -334,7 +334,7 @@ hr {
 
 .homepage-entry-grid .entry-review {
   grid-column: 2 / -1;
-  grid-row: 1 / 2;
+  grid-row: 1 / -1;
 
   text-align: justify;
 }
@@ -349,13 +349,13 @@ hr {
 }
 
 .homepage-entry-grid .entry-buttons {
-  grid-column: 2 / -1;
+  grid-column: 1 / 2;
   grid-row: 2 / -1;
 
   width: 100%;
 
   display: flex;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
   gap: 10px;
 }
