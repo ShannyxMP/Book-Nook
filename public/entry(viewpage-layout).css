@@ -335,8 +335,6 @@ hr {
 .homepage-entry-grid .entry-review {
   grid-column: 2 / -1;
   grid-row: 1 / -1;
-
-  text-align: justify;
 }
 
 .homepage-entry-grid .entry-content-container .entry-review h2 {
@@ -372,9 +370,6 @@ hr {
   .homepage-entry-grid .entire-entry-container {
     width: 100%;
 
-    display: grid;
-    grid-template-columns: 0.8fr 2fr;
-    grid-template-rows: 120px 2fr;
     grid-auto-rows: 120px 2fr;
 
     margin: 0 8px;
@@ -540,7 +535,6 @@ hr {
   grid-column: 1 / -1;
   grid-row: 2 / -1;
 
-  text-align: justify;
   white-space: pre-line;
 
   padding: 0 16px;
@@ -594,7 +588,5 @@ hr {
   .view-entryPage .entry-review {
     grid-column: 1 / -1;
     grid-row: 2 / -1;
-
-    text-align: justify;
   }
 }

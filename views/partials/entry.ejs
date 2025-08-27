@@ -81,7 +81,6 @@
             <a href="/view/<%= entryDetails.review_id %>"><span class="material-icons-round">read_more</span></a>
           <% } else { %>
             <%= entryDetails.review %> 
-            <!-- [x]: paragraph spacing is not showing. -->
           <% } %>
         <% } else { %> 
           <span class="empty">No review yet. Fill form below.</span> 
@@ -141,7 +140,7 @@
             <% for (let i = 0; i < 6; i++) { %> <input id="<%= i %>" type="radio"
             name="rating" value="<%= i %>" required <%= entryDetails.rating == i ?
             "checked" : "" %> />
-            <!-- entryDetails.rating == i ? "checked" : ""  <--  So that the user can see which rating was originally selected  -->
+            <!-- NOTE: entryDetails.rating == i ? "checked" : ""  <- So that the user can see which rating was originally selected  -->
             <label for="<%= i %>"><%= i %></label>
             <% } %>
         </div>

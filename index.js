@@ -144,7 +144,7 @@ app.post("/fetch-new-entry", async (req, res) => {
 app.post("/post-new-entry", async (req, res) => {
   const {
     bookTitle: title,
-    bookAuthor: author,
+    author,
     bookCover: book_cover,
     bookISBN: isbn,
     bookOLlink: ol_link,

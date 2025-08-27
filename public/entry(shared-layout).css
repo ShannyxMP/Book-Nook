@@ -72,11 +72,6 @@
 }
 
 /********** ENTIRE ENTRY LAYOUT **********/
-.entry-review p {
-  line-height: 1.5;
-  margin: 0;
-}
-
 /* SMALL DEVICES LAYOUT */
 .entire-entry-container {
   width: 100%;
@@ -85,6 +80,15 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+}
+
+.entry-review {
+  text-align: justify;
+}
+
+.entry-review p {
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* MEDIUM DEVICES AND ABOVE */
