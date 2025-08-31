@@ -32,3 +32,11 @@ document.querySelectorAll(".sortOptions li").forEach((listedItem) => {
     document.querySelector("#sortForm").submit();
   });
 });
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    document.querySelector(".auto-scrollUp").classList.add("show");
+  } else {
+    document.querySelector(".auto-scrollUp").classList.remove("show");
+  }
+});

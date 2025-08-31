@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 html {
@@ -89,6 +90,29 @@ header a {
 
 /******************** MOBILE FIRST ********************/
 /********** FOOTER CONTENT **********/
+.auto-scrollUp {
+  height: 40px;
+  width: 60px;
+
+  position: fixed;
+  right: -45px;
+  bottom: 30px;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #ffae55;
+  box-shadow: 3px 3px 5px black;
+
+  transition: ease-in 0.5s;
+}
+
+.auto-scrollUp.show {
+  right: -1px;
+}
+
 footer {
   width: 100%;
 
