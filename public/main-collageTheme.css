@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
 html {
@@ -11,11 +10,12 @@ html {
   color: #161616;
 
   overflow-x: hidden;
+
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  overflow-x: hidden;
 }
 
 main {

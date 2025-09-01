@@ -52,6 +52,7 @@
 .postIt-notes div:nth-child(1) {
   grid-column: 1 / 2;
   grid-row: 1 / -1;
+  position: relative;
 
   /* background-color: #ff55f9; */
   background: linear-gradient(#ff55f9, #cb3ac6, #ff55f9);
@@ -76,6 +77,7 @@
 .postIt-notes div:nth-child(2) {
   grid-column: 2 / -1;
   grid-row: 1 / -1;
+  position: relative;
 
   /* background-color: #55e5ff; */
   background: linear-gradient(#55e5ff, #40bbd1, #2893a5);
@@ -136,6 +138,8 @@
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   justify-self: start;
+  position: relative;
+
   transform: translate(-8px, 0) rotate(var(--rotation, -0.003turn));
 
   text-align: right;
@@ -182,6 +186,8 @@
   grid-column: 2 / -1;
   grid-row: 1 / 2;
   justify-self: end;
+  position: relative;
+
   transform: translate(8px, -3px) rotate(var(--rotation, 0.004turn));
 
   text-align: left;
@@ -359,14 +365,6 @@ hr {
 }
 
 @media only screen and (min-width: 600px) {
-  .homepage-entry-grid {
-    width: 100%;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-auto-rows: auto;
-  }
-
   .homepage-entry-grid .entire-entry-container {
     width: 100%;
 
@@ -540,9 +538,15 @@ hr {
   padding: 0 16px;
 }
 
+@media only screen and (min-width: 500px) and (max-width: 599px) {
+  .view-entryPage:after {
+    left: 4rem;
+  }
+}
+
 @media only screen and (min-width: 600px) {
   .view-entryPage {
-    padding: 60px 104px 60px 0;
+    padding: 60px 60px 60px 0;
   }
 
   .view-entryPage .polaroid {

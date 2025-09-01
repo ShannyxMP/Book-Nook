@@ -1,6 +1,6 @@
 /********** POLAROID LAYOUT **********/
 .polaroid {
-  width: clamp(280px, 280px, 315px);
+  width: clamp(280px, 30vw, 315px);
   height: 450px;
   border-radius: 5px;
 
@@ -99,6 +99,7 @@
     display: grid;
     grid-template-columns: 0.8fr 2fr;
     grid-template-rows: 120px 2fr;
+    gap: 2rem;
   }
 
   .polaroid {
