@@ -9,13 +9,15 @@ html {
   font-family: "Space Grotesk", sans-serif;
   color: #161616;
 
-  overflow-x: hidden;
+  overflow-x: hidden; /* NOTE: required to be applied to both html and body to work correctly */
 
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+
+  overflow-x: hidden; /* NOTE: required to be applied to both html and body to work correctly */
 }
 
 main {
@@ -50,8 +52,6 @@ header a {
 }
 
 #title {
-  width: 100%;
-
   margin: 0;
 
   font-family: "Permanent Marker", serif;
@@ -81,11 +81,6 @@ header a {
 
 #title span {
   font-size: 3rem;
-}
-
-#title a {
-  display: flex;
-  align-items: center;
 }
 
 /******************** MOBILE FIRST ********************/
