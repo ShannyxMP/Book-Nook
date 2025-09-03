@@ -1,10 +1,12 @@
 <div class="entire-entry-container">
+  <!-- Divider between entries -->
   <% if (showLineBreak) { %>
     <div class="lineBreak-wrapper">
       <hr>
     </div>
   <% } %>
 
+  <!-- Polaroid image showing book details -->
   <div class="polaroid randomRotation">
     <div class="entry-img-wrapper">
       <img src="<%= entryDetails.book_cover %>" alt="book cover for <%= entryDetails.title %>" />
@@ -15,6 +17,7 @@
       <p>
         Date Created: 
         <% if (entryDetails.date_created) { %>
+        <!-- If no date fetched from database, fallback to placeholder -->
           <span> <% const formattedDate = new
           Date(entryDetails.date_created).toLocaleDateString(); %> <%= formattedDate %>
           </span>
@@ -37,6 +40,7 @@
         <br>
           by 
           <% if (entryDetails.author) { %> 
+          <!-- If no author fetched from API, fallback to placeholder -->
             <%= entryDetails.author %> 
           <% } else { %>
             <span class="empty"><em>No Author yet. Please update.</em></span>
@@ -45,10 +49,12 @@
     </div>
   </div>
 
+  <!-- Section containing rating, review +/- forms and buttons, depending on flags -->
   <div class="entry-content-container">
     <div class="entry-rating">
       <p>
         <% if (entryDetails.rating) { %> 
+        <!-- If no rating fetched from database, fallback to placeholder -->
           <% if (showPreview) { %>
             <h2> Rating </h2>
             <br>
@@ -69,9 +75,11 @@
         <% } %>
       </p>
     </div>
+    
     <div class="entry-review">
       <p>
         <% if (entryDetails.review) { %> 
+        <!-- If no review fetched from database, fallback to placeholder -->
           <% if (showPreview) { %>
           <h2> Review </h2>
           <br>
@@ -90,6 +98,7 @@
 
     <% if (showButtons) { %>
     <div class="entry-buttons">
+    <!-- Home, Edit, and Delete button -->
       <% if (!showPreview) { %>
       <a href="/"><span class="material-icons-round">home</span></a>
       <% } %>
@@ -107,64 +116,67 @@
     <% } %>
 
       <% if (showForm) { %> 
-        
-        <% if (showEditForm) { %>
-      <form action="/edit-entry/<%= entryDetails.review_id %>" method="POST">
-        <input type="hidden" name="isbn" value="<%= entryDetails.book_isbn %>" />
+      <!-- Show either edit or post form, depending on flags -->
 
-        <h2>Update Entry :</h2>
+        <% if (showEditForm) { %>
+          <form action="/edit-entry/<%= entryDetails.review_id %>" method="POST">
+            <input type="hidden" name="isbn" value="<%= entryDetails.book_isbn %>" />
+
+            <h2>Update Entry :</h2>
         <% } %>
 
-          <% if (showPostForm) { %>
-      <form action="/post-new-entry" method="POST">
-        <!-- NOTE: JSON.stringify(book) was not working and resorted to approach below: -->
-        <input type="hidden" name="bookTitle" value="<%= entryDetails.title %>" />
-        <input type="hidden" name="bookCover" value="<%= entryDetails.book_cover %>" />
-        <input type="hidden" name="bookISBN" value="<%= entryDetails.isbn %>" />
-        <input type="hidden" name="bookOLlink" value="<%= entryDetails.ol_link %>" />
-          <% } %>
+        <% if (showPostForm) { %>
+          <form action="/post-new-entry" method="POST">
+          <!-- NOTE: JSON.stringify(book) was not working and resorted to approach below: -->
+            <input type="hidden" name="bookTitle" value="<%= entryDetails.title %>" />
+            <input type="hidden" name="bookCover" value="<%= entryDetails.book_cover %>" />
+            <input type="hidden" name="bookISBN" value="<%= entryDetails.isbn %>" />
+            <input type="hidden" name="bookOLlink" value="<%= entryDetails.ol_link %>" />
+        <% } %>
 
-        <div class="entry-input-author">
-          <h3>Author:</h3>
-          <input
-              type="text"
-              name="author"
-              placeholder="Author"
-              value="<%= entryDetails.author %>"
-              required
-          />
-        </div>
+            <div class="entry-input-author">
+              <h3>Author:</h3>
+              <input
+                  type="text"
+                  name="author"
+                  placeholder="Author"
+                  value="<%= entryDetails.author %>"
+                  required
+              />
+            </div>
 
-        <div class="entry-input-rating">
-            <h3>Rating:</h3>
-            <% for (let i = 0; i < 6; i++) { %> <input id="<%= i %>" type="radio"
-            name="rating" value="<%= i %>" required <%= entryDetails.rating == i ?
-            "checked" : "" %> />
-            <!-- NOTE: entryDetails.rating == i ? "checked" : ""  <- So that the user can see which rating was originally selected  -->
-            <label for="<%= i %>"><%= i %></label>
-            <% } %>
-        </div>
+            <div class="entry-input-rating">
+                <h3>Rating:</h3>
+                <% for (let i = 0; i < 6; i++) { %> <input id="<%= i %>" type="radio"
+                name="rating" value="<%= i %>" required <%= entryDetails.rating == i ?
+                "checked" : "" %> />
+                <!-- NOTE: entryDetails.rating == i ? "checked" : ""  <- So that the user can see which rating was originally selected  -->
+                <label for="<%= i %>"><%= i %></label>
+                <% } %>
+            </div>
 
-        <div class="entry-input-review">
-            <h3>Review:</h3>
-            <textarea
-              name="review"
-              placeholder="Write your review here..."
-              required
-              autofocus
-            ><%= entryDetails.review %></textarea
-            >
-        </div>
+            <div class="entry-input-review">
+                <h3>Review:</h3>
+                <textarea
+                  name="review"
+                  placeholder="Write your review here..."
+                  minlength="300"
+                  required
+                  autofocus
+                ><%= entryDetails.review %></textarea
+                >
+            </div>
 
-        <div class="cancelSubmit-btn"> 
-          <% if (showPostForm) { %>
-            <a href="/add-entry">Cancel</a>
-          <% } else { %>
-            <a href="/">Cancel</a>
-          <% } %>
-          <input type="submit" value="Submit" />
-        </div>
-      </form>
+            <div class="cancelSubmit-btn"> 
+              <% if (showPostForm) { %>
+              <!-- Cancelling submission on add-entry page will refresh page, otherwise will take user to homepage -->
+                <a href="/add-entry">Cancel</a>
+              <% } else { %>
+                <a href="/">Cancel</a>
+              <% } %>
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
       <% } %>
   </div>
 </div>

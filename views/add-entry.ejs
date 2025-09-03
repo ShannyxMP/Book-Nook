@@ -1,6 +1,7 @@
 <%- include("partials/header.ejs") %>
 
 <form class="isbn-form" action="/fetch-new-entry" method="POST">
+<!-- Fetches data from API based on ISBN provided -->
   <p>ISBN 10 / 13 (relevant information will be auto-populated for you):</p>
 
   <input
@@ -12,6 +13,7 @@
     required
     pattern="^(?:[(0-9)][-(0-9)]{9}|\d[-(0-9)]{12}|\d[-(0-9)]{16})$"
   />
+  <!-- pattern allows ISBN-10, ISBN-13 (with or without dashes) -->
   
   <div>
     <a href="/">Cancel</a>
@@ -23,6 +25,7 @@
   <h2>Preview pane:</h2>
 
   <% if (entryToAdd) { %> 
+  <!-- Show preview if a valid ISBN was entered and API returned data; otherwise, display gif image -->
     <%- include("partials/entry.ejs", { 
       entryDetails: entryToAdd, 
       // Conditionals:

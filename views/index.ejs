@@ -1,6 +1,7 @@
 <%- include("partials/header.ejs") %>
 
 <div class="stats">
+<!-- Display book counts -->
   <p>
     Books reviewed:
   </p>
@@ -23,6 +24,7 @@
 
 <main>
     <div class="postIt-tabs">
+    <!-- Add entry and Sort entries buttons -->
       <div class="randomRotation">
         <a href="/add-entry">New Entry <span class="material-icons-round">add</span></a>
       </div>
@@ -49,6 +51,7 @@
 
     <div class="homepage-entry-grid">
       <% for (let entry of listOfEntries) { %>
+      <!-- Render each entry in the homepage grid -->
         <%- include("partials/entry.ejs", { 
           entryDetails: entry, 
           // Conditionals:

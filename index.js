@@ -6,11 +6,12 @@ import env from "dotenv";
 
 const app = express();
 const port = 3000;
-const baseURL = "https://openlibrary.org/";
-const currentYear = new Date().getFullYear();
+const baseURL = "https://openlibrary.org/"; // Base URL for Open Library API
+const currentYear = new Date().getFullYear(); // For copyright in footer section and stats
 
-env.config();
+env.config(); // Load environment variables
 
+// Configure PostgreSQL client
 const db = new pg.Client({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
@@ -20,9 +21,11 @@ const db = new pg.Client({
 });
 db.connect();
 
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: true }));
+// Middlewares
+app.use(express.static("public")); // For static assets (CSS, JS, images)
+app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded forms
 
+// Sample of book and review objects
 let books = [
   {
     id: 1, // SERIAL PRIMARY KEY
@@ -44,9 +47,10 @@ let reviews = [
   },
 ];
 
-let entries = [];
-let sorting = "reviews.date_created DESC";
+let entries = []; // Includes book and review data for rendering
+let sorting = "reviews.date_created DESC"; // Default sorting for homepage entries
 
+// Fetches all reviews and corresponding book from database
 async function obtainBookReviews() {
   try {
     const result = await db.query(
@@ -67,14 +71,17 @@ async function obtainBookReviews() {
   }
 }
 
+// View homepage
 app.get("/", async (req, res) => {
   let booksReadTotal;
   let booksReadThisYear;
 
+  // Count books for stats
   try {
     await obtainBookReviews();
     // console.log(entries);
 
+    // Count books reviewed since 01/01 of current year
     const result = await db.query(
       `SELECT * FROM books JOIN reviews ON books.isbn = reviews.book_isbn WHERE date_created >= '${currentYear}-01-01'`
     );
@@ -95,16 +102,19 @@ app.get("/", async (req, res) => {
   });
 });
 
+// Update sorting preference when user clicks sort button and list
 app.post("/sort", (req, res) => {
   // console.log(req.body);
   sorting = req.body.sortBy;
   res.redirect("/");
 });
 
+// View add-entry page with ISBN form and empty preview pane
 app.get("/add-entry", async (req, res) => {
   res.render("add-entry.ejs", { entryToAdd: null, year: currentYear });
 });
 
+// Re-render add-entry page once data fetched from API and show in preview
 app.post("/fetch-new-entry", async (req, res) => {
   let isbn = req.body.isbn;
 
@@ -141,6 +151,7 @@ app.post("/fetch-new-entry", async (req, res) => {
   }
 });
 
+// After submitting new entry, redirect to homepage
 app.post("/post-new-entry", async (req, res) => {
   const {
     bookTitle: title,
@@ -151,7 +162,6 @@ app.post("/post-new-entry", async (req, res) => {
     rating,
     review,
   } = req.body;
-
   // console.log({ title, author, book_cover, isbn, ol_link, rating, review });
 
   try {
@@ -172,6 +182,7 @@ app.post("/post-new-entry", async (req, res) => {
   }
 });
 
+// View individual book review page
 app.get("/view/:postId", async (req, res) => {
   const entryIndex = req.params.postId;
 
@@ -183,6 +194,7 @@ app.get("/view/:postId", async (req, res) => {
   res.render("view-entry.ejs", { entryToView: fetchEntry, year: currentYear });
 });
 
+// View editing page for a specific book review
 app.get("/edit/:postId", async (req, res) => {
   const entryIndex = req.params.postId;
 
@@ -194,6 +206,7 @@ app.get("/edit/:postId", async (req, res) => {
   res.render("edit-entry.ejs", { entryToEdit: fetchEntry, year: currentYear });
 });
 
+// After submitting new entry, redirect to homepage
 app.post("/edit-entry/:postId", async (req, res) => {
   const entryIndex = req.params.postId;
 
@@ -203,7 +216,6 @@ app.post("/edit-entry/:postId", async (req, res) => {
     author: updateAuthor,
     isbn,
   } = req.body;
-
   // console.log(updateAuthor, isbn);
 
   try {
@@ -224,6 +236,7 @@ app.post("/edit-entry/:postId", async (req, res) => {
   }
 });
 
+// After deleting book review, redirect to homepage
 app.get("/delete/:postId", async (req, res) => {
   const entryIndex = req.params.postId;
   // console.log(entryIndex);
@@ -242,6 +255,7 @@ app.get("/delete/:postId", async (req, res) => {
   }
 });
 
+// Start server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
