@@ -86,7 +86,7 @@
             <% var preview = (entryDetails.review).substring(0, 300) %>
             <%= preview %>...
             <br>
-            <a href="/view/<%= entryDetails.review_id %>"><span class="material-icons-round">read_more</span></a>
+            <a href="/view/<%= entryDetails.review_id %>" target="_blank" rel="noopener noreferrer"><span class="material-icons-round">read_more</span></a>
           <% } else { %>
             <%= entryDetails.review %> 
           <% } %>
